@@ -25,7 +25,7 @@ var app = new Framework7({
     return {
       XRapidAPIKey: '5a5db81725mshedb8ee9d33ab24fp163f56jsnc051c51e6ced',
       XRapidAPIHost: 'ronreiter-meme-generator.p.rapidapi.com',
-      testEndpoint: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlOzdvR4MOcZAtBUuY_tURF82DH3dbSAuOa_GEv0lf6ItPxCNPBA&s'
+      requestingDomain: 'https://ronreiter-meme-generator.p.rapidapi.com/'
     };
   },
   // App root methods

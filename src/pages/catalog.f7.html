@@ -109,7 +109,7 @@
 
               let oReq = new XMLHttpRequest();
 
-              oReq.open("GET", "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Ooh&bottom=You%20Really%20Thought", true);
+              oReq.open("GET", myApp.data.requestingDomain+"meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Ooh&bottom=You%20Really%20Thought", true);
               oReq.responseType = "blob";
               oReq.setRequestHeader("x-rapidapi-host", myApp.data.XRapidAPIHost);
               oReq.setRequestHeader("x-rapidapi-key", myApp.data.XRapidAPIKey);
