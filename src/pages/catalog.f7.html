@@ -1,0 +1,199 @@
+<template>
+  <div class="page" data-name="catalog">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="title">Catalog</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="row margin-top">
+        {{#if downloaded}}
+          <button class="button button-fill button-round button-large margin-left col-45" @click="discardFile('{{myFile}}')">
+            Discard
+          </button>
+          <button class="button button-raised button-round button-large margin-right col-45" @click="shareFile('{{myFile}}')">
+            Share
+          </button>
+        {{else}}
+          <button class="button button-fill button-round button-large margin-left col-45" @click="getMeme">
+            Get Meme
+          </button>
+          <button class="button button-raised button-round button-large margin-right col-45" @click="downloadFile">
+            Download
+          </button>
+        {{/if}}
+      </div>
+
+      <div id="response" class="block">
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+
+  export default {
+      data: function () {
+         return {
+             downloaded: false,
+             myFile: null
+         }
+      },
+      methods: {
+          discardFile (fileName) {
+              // Fetch the file
+              let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+              const myApp = this.$app;
+
+              if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
+
+              window.resolveLocalFileSystemURL(fileDirectory, function (dir) {
+                  dir.getFile(fileName, { create: false }, function (fileEntry) {
+                      // Delete
+                      fileEntry.remove( function () {
+                          myApp.views.current.router.refreshPage();
+                          myApp.toast.create({
+                              icon: '<i class="f7-icons">checkmark_alt</i>',
+                              text: 'Deleted!',
+                              position: 'center',
+                              closeTimeout: 4000,
+                          }).open();
+                      })
+                  }, function () {
+                      myApp.toast.create({
+                          text: 'The file does not exist',
+                          closeButton: true,
+                          closeButtonText: 'OK',
+                          closeButtonColor: 'red',
+                          closeTimeout: 4000,
+                      }).open()
+                  })
+              })
+          },
+          shareFile (fileName) {
+              // Fetch the file
+              let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+              const myApp = this.$app;
+
+              if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
+
+              window.resolveLocalFileSystemURL(fileDirectory, function (dir) {
+                  dir.getFile(fileName, { create: false }, function (fileEntry) {
+
+                      const filePath = fileEntry.toURL();
+                      window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
+                          myApp.toast.create({
+                              icon: '<i class="f7-icons">checkmark_alt</i>',
+                              text: 'Saved!',
+                              position: 'center',
+                              closeTimeout: 4000,
+                          }).open();
+                          // Delete from tmp
+                          fileEntry.remove();
+                          myApp.views.current.router.refreshPage();
+                      })
+                  }, function () {
+                      myApp.toast.create({
+                          text: 'The file does not exist',
+                          closeButton: true,
+                          closeButtonText: 'OK',
+                          closeButtonColor: 'red',
+                          closeTimeout: 4000,
+                      }).open()
+                  })
+              })
+          },
+          downloadFile () {
+              const $$ = this.$, myApp = this.$app, component = this;
+              myApp.preloader.show("orange");
+
+              let oReq = new XMLHttpRequest();
+
+              oReq.open("GET", "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Ooh&bottom=You%20Really%20Thought", true);
+              oReq.responseType = "blob";
+              oReq.setRequestHeader("x-rapidapi-host", myApp.data.XRapidAPIHost);
+              oReq.setRequestHeader("x-rapidapi-key", myApp.data.XRapidAPIKey);
+              oReq.onload = function () {
+
+                  if ( oReq.response ) {
+                      return saveAndRead(oReq.response)
+                  }
+                  myApp.preloader.hide();
+                  return myApp.toast.create({
+                      text: 'We didnt get an XHR response!',
+                      closeButton: true,
+                      closeButtonText: 'OK',
+                      closeButtonColor: 'red',
+                  }).open()
+              };
+              oReq.onerror = function (err) {
+                  myApp.preloader.hide();
+                  return myApp.toast.create({
+                      text: 'An error occured '+err.message,
+                      closeButton: true,
+                      closeButtonText: 'OK',
+                      closeButtonColor: 'red',
+                  }).open()
+              };
+              oReq.send(null);
+
+              function saveAndRead(blob) {
+
+                  const fileName = new Date().getTime()+'.jpeg';
+                  let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+
+                  if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
+
+                  window.resolveLocalFileSystemURL( fileDirectory, function (dir) {
+                      // Create file in the accessed directory
+
+                      dir.getFile(fileName, { create: true }, function (fileEntry) {
+
+                          fileEntry.createWriter(
+                              // On success
+                              function (fileWriter) {
+
+                                  fileWriter.onwriteend = function() {
+                                      myApp.preloader.hide();
+                                      // Change state
+                                      component.$setState({
+                                          downloaded: true,
+                                          myFile: fileName
+                                      });
+                                      //read file after writing
+                                      const filePath = fileEntry.toURL();
+                                      return $$('#response').append(`<img src="`+filePath+`" alt="downloaded" class="margin-top"/>`);
+                                  };
+
+                                  fileWriter.onerror = function(er) {
+                                      myApp.toast.create({
+                                          text: 'Unable to write file! '+er,
+                                          closeButton: true,
+                                          closeButtonText: 'OK',
+                                          closeButtonColor: 'red',
+                                      }).open()
+                                  };
+
+                                  fileWriter.write(blob);
+                              },
+                              // On error
+                              function (err) {
+                                  myApp.toast.create({
+                                      text: 'Unable to create writer! '+err,
+                                      closeButton: true,
+                                      closeButtonText: 'OK',
+                                      closeButtonColor: 'red',
+                                  }).open()
+                              }
+                          );
+                      })
+                  })
+              }
+          },
+
+          getMeme () {
+
+          }
+      }
+  };
+</script>
