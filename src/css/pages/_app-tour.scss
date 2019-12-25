@@ -52,7 +52,7 @@
   }
   .bottom-right-link {
     bottom: 5vw;
-    right: 5vw;
+    right: calc(var(--f7-navbar-inner-padding-right) + var(--f7-safe-area-right));
     color: $light-primary-shade;
     font: {
       weight: bold;
@@ -61,7 +61,7 @@
   }
   .bottom-left-text {
     bottom: 5vw;
-    left: 5vw;
+    left: calc(var(--f7-navbar-inner-padding-left) + var(--f7-safe-area-left));
     color: $secondary-color
   }
   // End app-tour
