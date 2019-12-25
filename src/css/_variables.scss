@@ -1,0 +1,29 @@
+// App colors
+$primary-color: #FF6B22;
+$secondary-color: #005246;
+$dark-primary-shade: #8E5941;
+$light-primary-shade: #FFE7D4;
+
+$secondary-light-shade: #4C8076;
+$secondary-extra-light-shade: #C4FCF0;
+
+// Mixin functions
+@mixin css-prefix($prop, $value) {
+  -webkit-#{$prop}: #{$value};
+  -moz-#{$prop}: #{$value};
+  -ms-#{$prop}: #{$value};
+  -o-#{$prop}: #{$value};
+  #{$prop}: #{$value};
+}
+
+@mixin  brad($value){
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin  bsize($value){
+  -webkit-box-sizing: $value;
+  -moz-box-sizing: $value;
+  box-sizing: $value;
+}
