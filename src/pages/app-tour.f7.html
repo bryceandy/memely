@@ -25,7 +25,7 @@
         <p class="text-align-center">Memely</p>
       </div>
 
-      <a href="#" class="link bottom-right-link">
+      <a href="/app-tour-final/" class="link bottom-right-link">
         Next
       </a>
     </div>
@@ -36,7 +36,14 @@
     export default {
         on: {
             pageInit () {
-                this.$$('.memely-toolbar').hide()
+                this.$$('.memely-toolbar').hide();
+
+                let userDetails = JSON.parse(localStorage.getItem("user"));
+
+                if( ! userDetails ) {
+                    // Init user object
+                    localStorage.setItem("user", JSON.stringify([]))
+                }
             }
         }
     }
