@@ -35,14 +35,7 @@
     export default {
         on: {
             pageInit () {
-                this.$$('.memely-toolbar').hide();
 
-                let userDetails = JSON.parse(localStorage.getItem("user"));
-
-                if( ! userDetails ) {
-                    // Init user object
-                    localStorage.setItem("user", JSON.stringify([]))
-                }
             }
         }
     }

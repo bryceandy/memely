@@ -48,15 +48,19 @@
     export default {
         on: {
             pageInit () {
+                // Hide the main toolbar of the app
                 this.$$('.memely-toolbar').hide();
+                // Hide the statusbar for app-tour pages
                 this.$app.statusbar.hide();
 
                 let userDetails = JSON.parse(localStorage.getItem("user"));
 
                 if( ! userDetails ) {
                     // Init user object
-                    localStorage.setItem("user", JSON.stringify([]))
+                    localStorage.setItem("user", JSON.stringify([]));
+                    return console.log('user created')
                 }
+                return console.log('user exists')
             }
         }
     }

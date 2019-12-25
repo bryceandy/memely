@@ -11,7 +11,10 @@ var routes = [
   },
   {
     path: '/app-tour-final/',
-    component: AppTourFinalPage
+    component: AppTourFinalPage,
+    options: {
+      transition: 'f7-fade',
+    }
   },
   {
     path: '/',
