@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/app-tour.f7.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/app-tour.f7.html" afterDir="false" />
-    </list>
+    <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +25,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -35,6 +33,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/src/static" />
     </key>
   </component>
@@ -60,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1577058665410</updated>
-      <workItem from="1577058667070" duration="59300000" />
+      <workItem from="1577058667070" duration="59648000" />
     </task>
     <servers />
   </component>
