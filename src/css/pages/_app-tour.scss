@@ -1,5 +1,29 @@
 @import "../variables";
 
 .app-tour-page-content {
-  background-color: $primary-color;
+  background-color: lighten($primary-color, 10%);
+  position: relative;
+
+  .blob-illustration {
+    position: absolute;
+    width: auto
+  }
+  .top-left-illustration {
+    left: 0;
+    height: 60vh;
+    top: 0;
+    @include css-prefix(transform, translate(-35%, -30%) scaleX(1.5) rotate(-90deg))
+  }
+  .bottom-left-illustration {
+    left: 0;
+    height: 50vh;
+    bottom: 0;
+    @include css-prefix(transform, translate(-35%, 40%))
+  }
+  .bottom-right-illustration {
+    right: 0;
+    height: 50vh;
+    bottom: 0;
+    @include css-prefix(transform, translate(30%, 50%) scaleY(-1.5))
+  }
 }

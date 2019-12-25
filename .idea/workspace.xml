@@ -4,6 +4,8 @@
     <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/pages/_app-tour.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/pages/_app-tour.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/app-tour.f7.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/app-tour.f7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/shape.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/shape.svg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1577058665410</updated>
-      <workItem from="1577058667070" duration="52558000" />
+      <workItem from="1577058667070" duration="55879000" />
     </task>
     <servers />
   </component>
