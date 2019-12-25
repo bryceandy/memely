@@ -1,0 +1,20 @@
+<template>
+  <div class="page" data-name="app-tour">
+
+    <!-- Scrollable page content-->
+    <div class="page-content app-tour-page-content">
+      Go the the <a href="/">Home Page</a>
+    </div>
+  </div>
+</template>
+
+<script>
+    export default {
+        on: {
+            pageInit () {
+                this.$('.memely-toolbar').hide()
+            }
+        }
+    }
+</script>
+

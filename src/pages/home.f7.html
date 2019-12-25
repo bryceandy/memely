@@ -89,5 +89,11 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+    on: {
+        pageInit () {
+            this.$('.memely-toolbar').show()
+        }
+    }
+}
 </script>

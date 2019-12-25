@@ -44,7 +44,8 @@ var app = new Framework7({
   statusbar: {
     iosOverlaysWebView: false,
     androidOverlaysWebView: false,
-    androidBackgroundColor: "#ffffff"
+    androidBackgroundColor: "#FF6B22",
+    iosBackgroundColor: "#FF6B22"
   },
   on: {
     init: function () {
@@ -55,5 +56,12 @@ var app = new Framework7({
       }
     },
   },
+});
+
+let startUrl = '/app-tour/';
+
+// Choose which route to load
+app.views.create('.view-main', {
+  url: startUrl
 });
 
