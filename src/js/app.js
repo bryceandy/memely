@@ -28,6 +28,7 @@ var app = new Framework7({
   id: 'com.bryce.memely', // App bundle ID
   name: 'memely', // App name
   theme: 'auto', // Automatic theme detection
+  iosSwipeBack: false,
 
   // App root data
   data: function () {
