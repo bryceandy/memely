@@ -1,5 +1,15 @@
 @import "../variables";
 
+.app-tour-navbar {
+  .navbar-inner {
+    .left a {
+      color: $light-primary-shade;
+    }
+    .right a {
+      color: $secondary-color
+    }
+  }
+}
 .app-tour-page-content {
   height:100%;
   width: 100%;
@@ -7,7 +17,7 @@
   background-color: lighten($primary-color, 10%);
   position: relative;
 
-  .blob-illustration, .introduction {
+  .blob-illustration, .introduction, .bottom-left-text, .bottom-right-link {
     position: absolute
   }
   .top-left-illustration {
@@ -20,7 +30,7 @@
     left: 0;
     height: 50vh;
     bottom: 0;
-    @include css-prefix(transform, translate(-35%, 40%) scale(1.75, 2.25))
+    @include css-prefix(transform, translate(-35%, 40%) scale(1.75, 1.5))
   }
   .bottom-right-illustration {
     right: 0;
@@ -34,19 +44,33 @@
     @include css-prefix(transform, translate(-50%, -50%));
     font-weight: bold;
     line-height: 0;
-    color: #fff;
+    color: $light-primary-shade;
 
     p:nth-of-type(2) {
       font-size: 2.5em;
     }
   }
   .bottom-right-link {
-    position: absolute;
     bottom: 5vw;
     right: 5vw;
+    color: $light-primary-shade;
     font: {
       weight: bold;
       size: 1.5em
+    }
+  }
+  .bottom-left-text {
+    bottom: 10vw;
+    left: 5vw;
+    color: $secondary-color
+  }
+}
+
+// Change height of illustration for iPhone X series
+@media screen and (min-height: 750px){
+  .app-tour-page-content {
+    .bottom-left-illustration {
+      height: 40vh
     }
   }
 }
