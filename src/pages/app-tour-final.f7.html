@@ -13,27 +13,81 @@
         </div>
       </div>
     </div>
+
     <!-- Scrollable page content-->
-    <div class="page-content app-tour-page-content">
-      <!--Illustration vectors-->
-      <img src="static/shape2.svg" alt="Top left" class="blob-illustration top-left-illustration tour-final">
-      <img src="static/shape.svg" alt="Bottom left" class="blob-illustration bottom-left-illustration">
-      <img src="static/shape2.svg" alt="Bottom right" class="blob-illustration bottom-right-illustration">
-
-      <div class="tour-step">
-        Step 1/3
+    <div class="tabs-swipeable-wrap app-tour-final-tabs-wrapper">
+      <div class="app-tour-final-navigation">
+        <a class="tab-link link-active" data-tab=".tab1"></a>
+        <a class="tab-link" data-tab=".tab2"></a>
+        <a class="tab-link" data-tab=".tab3"></a>
       </div>
 
-      <div class="introduction tour-final">
-        <p class="text-align-justify">Upload photos & type in the words to be associated with your new meme</p>
-      </div>
+      <div class="tabs app-tour-final-tabs">
+        <!--All tabs for this page-->
+        <div id="tab-1" class="page-content app-tour-page-content tab tab-active tab1">
+          <!--Illustration vectors-->
+          <img src="static/shape2.svg" alt="Top left" class="blob-illustration top-left-illustration tour-final">
+          <img src="static/shape.svg" alt="Bottom left" class="blob-illustration bottom-left-illustration">
+          <img src="static/shape2.svg" alt="Bottom right" class="blob-illustration bottom-right-illustration">
 
-      <a href="/" class="link bottom-right-link if-not-md">
-        Next
-      </a>
-      <a href="/" class="link bottom-right-link if-md" style="right: 16px">
-        Next
-      </a>
+          <div class="tour-step">
+            Step 1/3
+          </div>
+
+          <div class="introduction tour-final">
+            <p class="text-align-justify">Upload photos & type in the words to be associated with your new meme</p>
+          </div>
+
+          <a data-tab=".tab2" class="tab-link link bottom-right-link if-not-md">
+            Next
+          </a>
+          <a data-tab=".tab2" class="tab-link link bottom-right-link if-md" style="right: 16px">
+            Next
+          </a>
+        </div>
+        <div id="tab-2" class="page-content app-tour-page-content tab tab2">
+          <!--Illustration vectors-->
+          <img src="static/shape2.svg" alt="Top left" class="blob-illustration top-left-illustration tour-final">
+          <img src="static/shape.svg" alt="Bottom left" class="blob-illustration bottom-left-illustration">
+          <img src="static/shape2.svg" alt="Bottom right" class="blob-illustration bottom-right-illustration">
+
+          <div class="tour-step">
+            Step 2/3
+          </div>
+
+          <div class="introduction tour-final">
+            <p class="text-align-justify">Search for images in our list of memes and edit the meme</p>
+          </div>
+
+          <a data-tab=".tab3" class="tab-link link bottom-right-link if-not-md">
+            Next
+          </a>
+          <a data-tab=".tab3" class="tab-link link bottom-right-link if-md" style="right: 16px">
+            Next
+          </a>
+        </div>
+        <div id="tab-3" class="page-content app-tour-page-content tab tab3">
+          <!--Illustration vectors-->
+          <img src="static/shape2.svg" alt="Top left" class="blob-illustration top-left-illustration tour-final">
+          <img src="static/shape.svg" alt="Bottom left" class="blob-illustration bottom-left-illustration">
+          <img src="static/shape2.svg" alt="Bottom right" class="blob-illustration bottom-right-illustration">
+
+          <div class="tour-step">
+            Step 3/3
+          </div>
+
+          <div class="introduction tour-final">
+            <p class="text-align-justify">Save your meme to device or share to your favorite social platforms</p>
+          </div>
+
+          <a href="/" class="link bottom-right-link if-not-md">
+            Finish
+          </a>
+          <a href="/" class="link bottom-right-link if-md" style="right: 16px">
+            Finish
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +96,27 @@
     export default {
         on: {
             pageInit () {
+                const $$ = this.$$;
 
+                for( let n = 1; n < 4; n++ ) {
+
+                    // Toggle active class
+                    $$("#tab-"+n).on('tab:show', function () {
+
+                        $$('.app-tour-final-navigation')
+                            .find('.link-active')
+                            .removeClass('link-active')
+                        ;
+                        $$('.app-tour-final-navigation').find('.tab-link-active').each((index, element) => {
+                            if ( $$(element).data('tab') !== '.tab'+n ) {
+                                $$(element).removeClass('tab-link-active')
+                            }
+                        });
+                        if ( ! $$('[data-tab=".tab'+n+'"]').hasClass('tab-link-active') ) {
+                            $$('[data-tab=".tab'+n+'"]').addClass('tab-link-active')
+                        }
+                    })
+                }
             }
         }
     }

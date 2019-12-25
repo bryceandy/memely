@@ -92,6 +92,35 @@
   }
 }
 
+.md {
+  .app-tour-final-navigation {
+    left: 16px
+  }
+}
+.app-tour-final-navigation{
+  position: fixed;
+  bottom: 5vw;
+  left: calc(var(--f7-navbar-inner-padding-left) + var(--f7-safe-area-left));
+  width: max-content;
+  width: -moz-max-content;
+  z-index: 10;
+
+  a{
+    &.tab-link-active, &.link-active{
+      background: $secondary-color;
+      @include css-prefix(transform, scale(1.5));
+    }
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+    height: 15px;
+    width: 15px;
+    @include brad(50%);
+    background: lighten($secondary-light-shade, 20%)
+  }
+}
+
 // Change height of illustration for iPhone X series
 @media screen and (min-height: 750px){
   .app-tour-page-content {
