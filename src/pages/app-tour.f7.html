@@ -25,12 +25,19 @@
         <p class="text-align-center">Memely</p>
       </div>
 
-      <div class="bottom-left-text text-align-left">
+      <div class="bottom-left-text text-align-left if-not-md">
+        Create & search memes <br>
+        with ease
+      </div>
+      <div class="bottom-left-text text-align-left if-md" style="left: 16px">
         Create & search memes <br>
         with ease
       </div>
 
-      <a href="/app-tour-final/" class="link bottom-right-link">
+      <a href="/app-tour-final/" class="link bottom-right-link if-not-md">
+        Start
+      </a>
+      <a href="/app-tour-final/" class="link bottom-right-link if-md" style="right: 16px">
         Start
       </a>
     </div>
@@ -42,6 +49,7 @@
         on: {
             pageInit () {
                 this.$$('.memely-toolbar').hide();
+                this.$app.statusbar.hide();
 
                 let userDetails = JSON.parse(localStorage.getItem("user"));
 
