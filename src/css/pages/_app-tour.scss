@@ -2,11 +2,11 @@
 // Start app-tour & app-tour-final styles
 .app-tour-navbar {
   .navbar-inner {
-    .left a {
+    .left a, .right a {
       color: $light-primary-shade;
     }
     .right a {
-      color: $light-primary-shade
+      font-size: 1.25em
     }
   }
 }
@@ -17,7 +17,7 @@
   background-color: lighten($primary-color, 10%);
   position: relative;
 
-  .blob-illustration, .introduction, .bottom-left-text, .bottom-right-link {
+  .blob-illustration, .introduction, .bottom-left-text, .bottom-right-link, .tour-step {
     position: absolute
   }
   .top-left-illustration {
@@ -47,7 +47,7 @@
     color: $secondary-color;
 
     p:nth-of-type(2) {
-      font-size: 2.5em;
+      font-size: 2.5em
     }
   }
   .bottom-right-link {
@@ -65,8 +65,31 @@
     color: $secondary-color
   }
   // End app-tour
-  // Start app-tour-final styles
 
+  // Start app-tour-final styles
+  .top-left-illustration.tour-final {
+    @include css-prefix(transform, translate(-35%, -30%) scaleX(1.5) rotate(45deg))
+  }
+  .introduction.tour-final {
+    line-height: unset;
+    font: {
+      weight: unset;
+      size: 1.5em
+    }
+
+    p {
+      width: 80vw
+    }
+  }
+  .tour-step {
+    top: 20vh;
+    left: 10vw;
+    color: $light-primary-shade;
+    font: {
+      weight: bold;
+      size: 1.5em
+    }
+  }
 }
 
 // Change height of illustration for iPhone X series
