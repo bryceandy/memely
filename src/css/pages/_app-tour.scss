@@ -1,12 +1,12 @@
 @import "../variables";
-
+// Start app-tour & app-tour-final styles
 .app-tour-navbar {
   .navbar-inner {
     .left a {
       color: $light-primary-shade;
     }
     .right a {
-      color: $secondary-color
+      color: $light-primary-shade
     }
   }
 }
@@ -44,7 +44,7 @@
     @include css-prefix(transform, translate(-50%, -50%));
     font-weight: bold;
     line-height: 0;
-    color: $light-primary-shade;
+    color: $secondary-color;
 
     p:nth-of-type(2) {
       font-size: 2.5em;
@@ -60,10 +60,13 @@
     }
   }
   .bottom-left-text {
-    bottom: 10vw;
+    bottom: 5vw;
     left: 5vw;
     color: $secondary-color
   }
+  // End app-tour
+  // Start app-tour-final styles
+
 }
 
 // Change height of illustration for iPhone X series
