@@ -91,8 +91,9 @@
 <script>
 export default {
     on: {
-        pageInit () {
-            this.$$('.memely-toolbar').show()
+        pageMounted () {
+            this.$$('.memely-toolbar').show();
+            this.$app.statusbar.show();
         }
     }
 }
