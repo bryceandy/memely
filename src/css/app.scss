@@ -20,6 +20,16 @@ body {
   @include bsize(border-box!important)
 }
 
+.navbar-inner {
+  .right a{
+    color: $secondary-color;
+    font: {
+      size: large;
+      weight: bold;
+    }
+  }
+}
+
 // Load other stylesheets
 @import "pages/app-tour";
 

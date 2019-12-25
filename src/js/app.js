@@ -13,6 +13,15 @@ import cordovaApp from './cordova-app.js';
 
 // Import Routes
 import routes from './routes.js';
+import Template7 from "template7";
+
+// Partial templates to be used anywhere
+Template7.registerPartial('menu-link',
+    `<a href="#" class="link icon-only">
+                <i class="icon f7-icons if-not-md">menu</i>
+                <i class="icon material-icons if-md">menu</i>
+              </a>`
+    );
 
 var app = new Framework7({
   root: '#app', // App root element
