@@ -9,7 +9,8 @@
 body {
   font: {
     family: "Bree Serif", monospace;
-    //family: "Avenir Next"
+    size: 16px;
+    weight: normal;
   }
   margin: 0;
   padding: 0;
@@ -19,5 +20,7 @@ body {
   @include bsize(border-box!important)
 }
 
+// Load other stylesheets
+@import "pages/app-tour";
 
 
