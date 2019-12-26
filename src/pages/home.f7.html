@@ -26,9 +26,19 @@
 export default {
     on: {
         pageInit () {
+            // Show app toolbar
             this.$$('.memely-toolbar').show();
             // Update statusbar
             this.$app.statusbar.setBackgroundColor('#FFFFFF');
+
+            // Update user status/object
+            let userDetails = JSON.parse(localStorage.getItem("user"));
+
+            if ( ! userDetails.passedTour) {
+                userDetails.passedTour = true;
+                localStorage.setItem("user", JSON.stringify(userDetails))
+                // From now on the app wont go back to the app-tour-pages
+            }
         }
     }
 }
