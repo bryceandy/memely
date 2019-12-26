@@ -88,6 +88,7 @@
   }
   .introduction {
     line-height: 1.1;
+    top: 70%;
     font: {
       weight: unset;
       size: 1.5em
@@ -141,6 +142,14 @@
   .app-tour-page-content {
     .bottom-left-illustration {
       height: 40vh
+    }
+  }
+}
+// Change font for screens other than X series
+@media screen and (min-aspect-ratio: 1/2){
+  .app-tour-final-tabs-wrap {
+    .introduction {
+      font-size: 1.2em
     }
   }
 }
