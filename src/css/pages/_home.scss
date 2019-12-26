@@ -6,5 +6,15 @@
 }
 
 .home-page-content {
-
+  .click-to-searchbox{
+    color: $secondary-color
+  }
+  .or-block {
+    color: $secondary-light-shade
+  }
+  .user-action-row {
+    .card{
+      height: 30vh
+    }
+  }
 }

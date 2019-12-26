@@ -4,7 +4,7 @@
     <div class="navbar">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
-        <div class="left">
+        <div class="right">
           {{> "menu-link"}}
         </div>
         <div class="title sliding">
@@ -29,13 +29,27 @@
     <!-- Scrollable page content-->
     <div class="page-content home-page-content">
       <div class="block">
-        <!--<div class="block-title-medium">Search meme</div>-->
+        <div class="block-title text-align-center">
+          <a href="#" class="link click-to-searchbox" @click="fireSearch">Search image to create meme</a>
+        </div>
+        <div class="block-title-medium text-align-center or-block">
+          OR
+        </div>
+        <div class="row user-action-row">
+          <div class="col-45 card"></div>
+          <div class="col-45 card"></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+    methods: {
+        fireSearch () {
+            alert('Fire')
+        }
+    },
     on: {
         pageInit () {
             // Show app toolbar
