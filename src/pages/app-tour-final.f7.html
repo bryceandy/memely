@@ -34,6 +34,7 @@
         {{tourStep}}
       </div>
       {{bottomRightLink}}
+      <img src="{{illustrationSrc}}" alt="illustration" class="blob-illustration app-final-tour-illustration">
 
       <div class="tabs app-tour-final-tabs">
         <!--All tabs for this page-->
@@ -49,7 +50,7 @@
         </div>
         <div id="tab-3" class="page-content app-tour-page-content tab tab3">
           <div class="introduction">
-            <p class="text-align-justify">Save meme on your device or share to your favorite social platforms</p>
+            <p class="text-align-justify">Save the meme on your device or share it with your friends</p>
           </div>
         </div>
       </div>
@@ -63,6 +64,7 @@
             return {
                 tourStep: 'Step 1/3',
                 bottomRightLink: `<a data-tab=".tab2" class="tab-link link bottom-right-link">Next</a>`,
+                illustrationSrc: 'static/Browsing.png',
                 lastTab: false
             }
         },
@@ -98,6 +100,7 @@
                             component.$setState({
                                 tourStep: 'Step 2/3',
                                 bottomRightLink: `<a data-tab=".tab3" class="tab-link link bottom-right-link">Next</a>`,
+                                illustrationSrc: 'static/HoldingPhone.png',
                                 lastTab: false
                             })
                         }
@@ -105,6 +108,7 @@
                             component.$setState({
                                 tourStep: 'Step 3/3',
                                 bottomRightLink: `<a href="/" class="link bottom-right-link">Finish</a>`,
+                                illustrationSrc: 'static/Teamwork.png',
                                 lastTab: true
                             })
                         }

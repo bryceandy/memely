@@ -75,7 +75,7 @@
  // App tour final styling
 .app-tour-final-tabs-wrap {
   .blob-illustration {
-    z-index: 10
+    z-index: 2
   }
   .blob-illustration, .bottom-left-text, .bottom-right-link, .tour-step, .app-tour-final-navigation {
     position: fixed
@@ -84,7 +84,14 @@
     @include css-prefix(transform, translate(-35%, -30%) scaleX(1.5) rotate(45deg))
   }
   .bottom-left-text, .bottom-right-link, .tour-step, .app-tour-final-navigation {
-    z-index: 11;
+    z-index: 3;
+  }
+  .app-final-tour-illustration {
+    top:50%;
+    left: 50%;
+    @include css-prefix(transform, translate(-50%, -50%));
+    width: auto;
+    height: 30vh
   }
   .introduction {
     line-height: 1.1;
