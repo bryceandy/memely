@@ -71,7 +71,7 @@ var app = new Framework7({
 });
 
 let startUrl = '/app-tour/';
-let currentUser = localStorage.getItem("user");
+const currentUser = JSON.parse(localStorage.getItem("user"));
 
 if (currentUser.passedTour) {
   startUrl = '/'
