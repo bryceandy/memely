@@ -13,8 +13,9 @@
     color: $secondary-light-shade
   }
   .user-action-row {
-    .card{
-      height: 30vh
+    .link{
+      height: 30vh;
+      @include brad(8px);
     }
   }
 }
