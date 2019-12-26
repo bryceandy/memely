@@ -51,8 +51,7 @@
                 // Hide the main toolbar of the app
                 this.$$('.memely-toolbar').hide();
                 // Modify the statusbar
-                this.$app.statusbar.setBackgroundColor('#ff8d55');
-                this.$app.statusbar.setTextColor('#005246');
+                this.$app.statusbar.hide();
 
                 let userDetails = JSON.parse(localStorage.getItem("user"));
 
