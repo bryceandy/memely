@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="" />
+    <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets-src/cordova-android-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets-src/cordova-android-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets-src/cordova-ios-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets-src/cordova-ios-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-ldpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-ldpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/playstore-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/playstore-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-83.5x83.5@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-83.5x83.5@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/memely.svg" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1577058665410</updated>
-      <workItem from="1577058667070" duration="83126000" />
+      <workItem from="1577058667070" duration="84003000" />
     </task>
     <servers />
   </component>
