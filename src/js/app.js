@@ -71,6 +71,11 @@ var app = new Framework7({
 });
 
 let startUrl = '/app-tour/';
+let currentUser = localStorage.getItem("user");
+
+if (currentUser.passedTour) {
+  startUrl = '/'
+}
 
 // Choose which route to load
 app.views.create('.view-main', {
