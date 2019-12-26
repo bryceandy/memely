@@ -90,13 +90,15 @@
                         if (n === 1) {
                             component.$setState({
                                 tourStep: 'Step 1/3',
-                                bottomRightLink: `<a data-tab=".tab2" class="tab-link link bottom-right-link">Next</a>`
+                                bottomRightLink: `<a data-tab=".tab2" class="tab-link link bottom-right-link">Next</a>`,
+                                lastTab: false
                             })
                         }
                         else if (n === 2) {
                             component.$setState({
                                 tourStep: 'Step 2/3',
-                                bottomRightLink: `<a data-tab=".tab3" class="tab-link link bottom-right-link">Next</a>`
+                                bottomRightLink: `<a data-tab=".tab3" class="tab-link link bottom-right-link">Next</a>`,
+                                lastTab: false
                             })
                         }
                         else {
