@@ -20,11 +20,18 @@
 .blob-illustration, .introduction, .bottom-left-text, .bottom-right-link {
   position: absolute
 }
+.logo {
+  position: fixed;
+  top: 5vh;
+  left: 0;
+  width: 35vw;
+  height: auto
+}
 .top-left-illustration {
   left: 0;
   height: 60vh;
   top: 0;
-  @include css-prefix(transform, translate(-35%, -30%) scaleX(1.5) rotate(-90deg))
+  @include css-prefix(transform, translate(-35%, -30%) scaleX(1.25) rotate(-90deg))
 }
 .bottom-left-illustration {
   left: 0;
@@ -80,7 +87,7 @@
     z-index: 11;
   }
   .introduction {
-    line-height: unset;
+    line-height: 1.1;
     font: {
       weight: unset;
       size: 1.5em

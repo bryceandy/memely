@@ -3,47 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets-src/cordova-android-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets-src/cordova-android-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets-src/cordova-ios-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets-src/cordova-ios-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets-src/cordova-splash-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets-src/cordova-splash-screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-ldpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-ldpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/android/playstore-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/android/playstore-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-20x20@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-29x29@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-40x40@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-50x50@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-512x512@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-57x57@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-60x60@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-72x72@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-76x76@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/icon/ios/icon-83.5x83.5@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/icon/ios/icon-83.5x83.5@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/android/drawable-hdpi/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/android/drawable-hdpi/screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/android/drawable-ldpi/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/android/drawable-ldpi/screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/android/drawable-mdpi/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/android/drawable-mdpi/screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/android/drawable-xhdpi/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/android/drawable-xhdpi/screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/android/drawable-xxhdpi/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/android/drawable-xxhdpi/screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/android/drawable-xxxhdpi/screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/android/drawable-xxxhdpi/screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/res/screen/ios/Default@2x~universal~anyany.png" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/res/screen/ios/Default@2x~universal~anyany.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/pages/_app-tour.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/pages/_app-tour.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/app-tour.f7.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/app-tour.f7.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +29,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/static" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,8 +37,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/src/static" />
+      <recent name="$PROJECT_DIR$/src/pages" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -102,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1577058665410</updated>
-      <workItem from="1577058667070" duration="79906000" />
+      <workItem from="1577058667070" duration="80586000" />
     </task>
     <servers />
   </component>
