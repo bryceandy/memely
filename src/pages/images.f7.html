@@ -10,10 +10,10 @@
         <div class="title sliding">
           <img src="static/memely.svg" alt="logo" class="title-logo">
         </div>
-        <div class="subnavbar">
+        <div class="subnavbar images-subnavbar">
           <div class="subnavbar-inner">
             <!-- Searchbar with auto init -->
-            <form class="searchbar image-searchbar">
+            <form class="searchbar images-searchbar">
               <div class="searchbar-inner">
                 <div class="searchbar-input-wrap">
                   <input type="search" placeholder="Search" name="searchImage">
@@ -23,6 +23,9 @@
                 <span class="searchbar-disable-button if-not-aurora">Cancel</span>
               </div>
             </form>
+            <div class="subnavbar-title images-subnavbar-title">
+              Memely images
+            </div>
           </div>
         </div>
       </div>
@@ -77,22 +80,22 @@
 </template>
 <script>
 export default {
-    data: function () {
-        return {
-
-        }
-    },
     methods: {
         fireSearch () {
-            this.$app.searchbar.get('.image-searchbar').enable()
+            this.$$('.images-subnavbar-title').hide();
+            this.$$('.images-searchbar').show();
+            this.$app.searchbar.get('.images-searchbar').enable()
         }
     },
     on: {
         pageInit () {
             const $$ = this.$$, myApp = this.$app;
 
-            // Show app toolbar
+            // Show/ hide elements
             $$('.memely-toolbar').show();
+            $$('.images-searchbar').hide();
+            //$$('.images-subnavbar-title').show();
+
             // Update statusbar
             myApp.statusbar.setBackgroundColor('#FFFFFF');
 
@@ -111,10 +114,13 @@ export default {
                 el: '.searchbar',
                 searchContainer: '.list',
                 searchIn: '.item-title',
-                backdrop: true,
                 on: {
-                    search(sb, query, previousQuery) {
-                        console.log(query, previousQuery);
+                    search (sb, query, previousQuery) {
+                        //console.log(query, previousQuery);
+                    },
+                    disable () {
+                        $$('.images-searchbar').hide();
+                        $$('.images-subnavbar-title').show()
                     }
                 }
             })
