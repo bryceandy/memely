@@ -1,7 +1,7 @@
 <template>
-  <div class="page page-with-subnavbar" data-name="images">
+  <div class="page" data-name="images">
     <!-- Top Navbar -->
-    <div class="navbar">
+    <div class="navbar navbar-large">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="right">
@@ -9,6 +9,11 @@
         </div>
         <div class="title sliding">
           <img src="static/memely.svg" alt="logo" class="title-logo">
+        </div>
+        <div class="title-large images-title-large">
+          <div class="title-large-text">
+            memages
+          </div>
         </div>
         <div class="subnavbar images-subnavbar">
           <div class="subnavbar-inner">
@@ -23,9 +28,6 @@
                 <span class="searchbar-disable-button if-not-aurora">Cancel</span>
               </div>
             </form>
-            <div class="subnavbar-title images-subnavbar-title">
-              memages
-            </div>
           </div>
         </div>
       </div>
@@ -69,8 +71,8 @@
 export default {
     methods: {
         fireSearch () {
-            this.$$('.images-subnavbar-title').hide();
-            this.$$('.images-searchbar').show();
+            this.$$('.images-title-large').hide();
+            this.$$('.images-subnavbar').show();
             this.$app.searchbar.get('.images-searchbar').enable()
         },
         displayPlainImage (imageName) {
@@ -85,8 +87,8 @@ export default {
             const $$ = this.$$, myApp = this.$app;
 
             // Show/ hide elements
-            $$('.images-searchbar').hide();
-            $$('.images-subnavbar-title').show();
+            $$('.images-subnavbar').hide();
+            $$('.images-title-large').show();
 
             // Create searchbar
             myApp.searchbar.create({
@@ -98,8 +100,8 @@ export default {
                         //console.log(query, previousQuery);
                     },
                     disable () {
-                        $$('.images-searchbar').hide();
-                        $$('.images-subnavbar-title').show()
+                        $$('.images-subnavbar').hide();
+                        $$('.images-title-large').show();
                     }
                 }
             })
