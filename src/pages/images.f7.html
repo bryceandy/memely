@@ -92,22 +92,8 @@ export default {
             const $$ = this.$$, myApp = this.$app;
 
             // Show/ hide elements
-            $$('.memely-toolbar').show();
             $$('.images-searchbar').hide();
-            //$$('.images-subnavbar-title').show();
-
-            // Update statusbar
-            myApp.statusbar.setBackgroundColor('#FFFFFF');
-
-            // Update user status/object
-            let userDetails = JSON.parse(localStorage.getItem("user"));
-
-            if ( ! userDetails.passedTour) {
-
-                newDetails = {passedTour: true};
-                // From now on the app wont go back to the app-tour-pages
-                localStorage.setItem("user", JSON.stringify(newDetails))
-            }
+            $$('.images-subnavbar-title').show();
 
             // Create searchbar
             myApp.searchbar.create({
