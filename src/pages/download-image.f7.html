@@ -28,19 +28,12 @@
     <div class="page-content download-image-page-content">
       <div class="row margin-top">
         {{#if downloaded}}
-        <button class="button button-fill button-round button-large margin-left col-45" @click="discardFile('{{myFile}}')">
-          Discard
-        </button>
-        <button class="button button-raised button-round button-large margin-right col-45" @click="shareFile('{{myFile}}')">
-          Share
-        </button>
-        {{else}}
-        <button class="button button-fill button-round button-large margin-left col-45" @click="getMeme">
-          Get Meme
-        </button>
-        <button class="button button-raised button-round button-large margin-right col-45" @click="downloadFile">
-          Download
-        </button>
+          <button class="button button-fill button-round button-large margin-left col-45" @click="discardFile('{{myFile}}')">
+            Discard
+          </button>
+          <button class="button button-raised button-round button-large margin-right col-45" @click="shareFile('{{myFile}}')">
+            Share
+          </button>
         {{/if}}
       </div>
 
