@@ -49,26 +49,13 @@
       <!-- search target list -->
       <div class="list searchbar-found">
         <ul>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Acura</div>
-            </div>
-          </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Audi</div>
-            </div>
-          </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title">BMW</div>
-            </div>
-          </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Volvo</div>
-            </div>
-          </li>
+          {{#images}}
+            <li class="item-content">
+              <div class="item-inner">
+                <div class="item-title">{{this}}</div>
+              </div>
+            </li>
+          {{/images}}
         </ul>
       </div>
       <!-- Nothing found message -->
@@ -80,33 +67,6 @@
 </template>
 <script>
 export default {
-    data: function () {
-        const myApp = this.$app;
-
-        // Request
-        myApp.request({
-            url: myApp.data.requestingDomain+'images',
-            method: 'Get',
-            headers: {
-                "x-rapidapi-host": myApp.data.XRapidAPIHost,
-                "x-rapidapi-key": myApp.data.XRapidAPIKey
-            },
-            dataType: 'json',
-            success(data, status, xhr) {
-                return {
-                    images: data
-                }
-            },
-            error(xhr, status) {
-                return myApp.toast.create({
-                    text: 'Failed to load images!',
-                    closeButton: true,
-                    closeButtonText: 'OK',
-                    closeButtonColor: 'red',
-                }).open()
-            }
-        })
-    },
     methods: {
         fireSearch () {
             this.$$('.images-subnavbar-title').hide();

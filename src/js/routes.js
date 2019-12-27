@@ -25,7 +25,38 @@ var routes = [
   },
   {
     path: '/images/',
-    component: ImagesPage,
+    async (routeTo, routeFrom, resolve, reject) {
+      // Request
+      app.request({
+        url: app.data.requestingDomain+'images',
+        method: 'Get',
+        headers: {
+          "x-rapidapi-host": app.data.XRapidAPIHost,
+          "x-rapidapi-key": app.data.XRapidAPIKey
+        },
+        dataType: 'json',
+        success(data, status, xhr) {
+
+          resolve ({
+            component: ImagesPage
+          },
+          {
+            context: {
+              images: data
+            }
+          })
+        },
+        error(xhr, status) {
+          reject();
+          app.toast.create({
+            text: 'Failed to load images! '+status,
+            closeButton: true,
+            closeButtonText: 'OK',
+            closeButtonColor: 'red',
+          }).open()
+        }
+      })
+    },
   },
   {
     path: '/gifs/',
