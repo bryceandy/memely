@@ -34,21 +34,20 @@
 
     <!-- Scrollable page content-->
     <div class="page-content images-page-content">
-      <div class="block">
-        <div class="row user-action-row">
-          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray" @click="fireSearch">
-            <i class="icon f7-icons">search</i>
-          </div>
-          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray">
-            <i class="icon f7-icons">cloud_upload</i>
+      {{#js_if '!this.searching && !this.uploading'}}
+        <div class="block">
+          <div class="row user-action-row">
+            <div class="link col-45 card text-align-center vertical-align-middle text-color-gray" @click="fireSearch">
+              <i class="icon f7-icons">search</i>
+              <p>Search</p>
+            </div>
+            <div class="link col-45 card text-align-center vertical-align-middle text-color-gray">
+              <i class="icon f7-icons">cloud_upload</i>
+              <p>Upload</p>
+            </div>
           </div>
         </div>
-        <!--<div class="row caption-row">
-          <div class="col-60 text-align-center text-color-gray">
-            Upload from device
-          </div>
-        </div>-->
-      </div>
+      {{/js_if}}
     </div>
   </div>
 </template>
@@ -56,7 +55,8 @@
 export default {
     data: function () {
         return {
-            searching: false
+            searching: false,
+            uploading: false
         }
     },
     methods: {
