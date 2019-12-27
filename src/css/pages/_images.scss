@@ -6,23 +6,14 @@
 }
 
 .images-page-content {
-  .click-to-searchbox, .caption-row{
-    color: $secondary-color
-  }
-  /*.or-block {
-    color: $secondary-color
-  }*/
   .user-action-row {
-    .link{
+    .link {
       height: 10vh;
       @include brad(8px);
+
       .icon {
-        font-size: 8vh;
-        color: $secondary-color
+        font-size: 5vh
       }
     }
-  }
-  .col-60 {
-    margin-left: 20%
   }
 }

@@ -12,16 +12,22 @@
         </div>
         <div class="subnavbar">
           <!-- Searchbar with auto init -->
-          <form class="searchbar">
-            <div class="searchbar-inner">
-              <div class="searchbar-input-wrap">
-                <input type="search" placeholder="Search">
-                <i class="searchbar-icon"></i>
-                <span class="input-clear-button"></span>
+          {{#js_if 'this.searching'}}
+            <form class="searchbar">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search">
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
               </div>
-              <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+            </form>
+          {{else}}
+            <div class="subnavbar-title">
+              images
             </div>
-          </form>
+          {{/js_if}}
         </div>
       </div>
     </div>
@@ -29,31 +35,35 @@
     <!-- Scrollable page content-->
     <div class="page-content images-page-content">
       <div class="block">
-        <div class="block-title text-align-center">
-          <a href="#" class="link click-to-searchbox" @click="fireSearch">Search meme image</a>
-        </div>
-        <div class="block-title text-align-center text-color-gray or-block">
-          OR
-        </div>
         <div class="row user-action-row">
-          <div class="link col-60 card text-align-center vertical-align-middle text-color-gray">
+          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray" @click="fireSearch">
+            <i class="icon f7-icons">search</i>
+          </div>
+          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray">
             <i class="icon f7-icons">cloud_upload</i>
           </div>
         </div>
-        <div class="row caption-row">
+        <!--<div class="row caption-row">
           <div class="col-60 text-align-center text-color-gray">
             Upload from device
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+    data: function () {
+        return {
+            searching: false
+        }
+    },
     methods: {
         fireSearch () {
-            alert('Fire')
+            return this.$setState({
+                searching: true
+            })
         }
     },
     on: {
