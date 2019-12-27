@@ -71,10 +71,12 @@ export default {
     },
     on: {
         pageInit () {
+            const $$ = this.$$, myApp = this.$app;
+
             // Show app toolbar
-            this.$$('.memely-toolbar').show();
+            $$('.memely-toolbar').show();
             // Update statusbar
-            this.$app.statusbar.setBackgroundColor('#FFFFFF');
+            myApp.statusbar.setBackgroundColor('#FFFFFF');
 
             // Update user status/object
             let userDetails = JSON.parse(localStorage.getItem("user"));
@@ -85,6 +87,7 @@ export default {
                 // From now on the app wont go back to the app-tour-pages
                 localStorage.setItem("user", JSON.stringify(newDetails))
             }
+            //
         }
     }
 }
