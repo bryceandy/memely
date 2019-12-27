@@ -1,6 +1,9 @@
 @import "../variables";
 
 .images-page-content {
+  .block, .list {
+    margin: 10px 0
+  }
   .user-action-row {
     .link {
       @include brad(8px);
