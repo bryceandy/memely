@@ -80,6 +80,33 @@
 </template>
 <script>
 export default {
+    data: function () {
+        const myApp = this.$app;
+
+        // Request
+        myApp.request({
+            url: myApp.data.requestingDomain+'images',
+            method: 'Get',
+            headers: {
+                "x-rapidapi-host": myApp.data.XRapidAPIHost,
+                "x-rapidapi-key": myApp.data.XRapidAPIKey
+            },
+            dataType: 'json',
+            success(data, status, xhr) {
+                return {
+                    images: data
+                }
+            },
+            error(xhr, status) {
+                return myApp.toast.create({
+                    text: 'Failed to load images!',
+                    closeButton: true,
+                    closeButtonText: 'OK',
+                    closeButtonColor: 'red',
+                }).open()
+            }
+        })
+    },
     methods: {
         fireSearch () {
             this.$$('.images-subnavbar-title').hide();
