@@ -121,7 +121,7 @@
         },
         on: {
             pageInit () {
-                const myApp = this.$app, $$ = this.$$, meme = this.route.params.name, component = this;
+                const myApp = this.$app, $$ = this.$$, meme = this.$route.params.name, component = this;
 
                 // Save the requested image temporarily to display in the device it
                 myApp.preloader.show('orange');
