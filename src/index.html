@@ -55,6 +55,10 @@
             <i class="icon f7-icons ">photo_on_rectangle</i>
             <span class="tabbar-label">Images</span>
           </a>
+          <a href="#view-gifs" class="tab-link">
+            <i class="icon f7-icons ">videocam</i>
+            <span class="tabbar-label">Gifs</span>
+          </a>
           <a href="#view-catalog" class="tab-link">
             <i class="icon f7-icons if-not-md">square_list_fill</i>
             <i class="icon material-icons if-md">view_list</i>
@@ -77,12 +81,14 @@
         <!-- Home page will be loaded here dynamically from /images/ route -->
       </div>
 
-      <!-- Catalog View -->
+      <div id="view-gifs" class="view view-init tab" data-view="gifs" data-url="/gifs/">
+        <!-- Home page will be loaded here dynamically from /gifs/ route -->
+      </div>
+
       <div id="view-catalog" class="view view-init tab" data-view="catalog" data-url="/catalog/">
         <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
       </div>
 
-      <!-- Settings View -->
       <div id="view-settings" class="view view-init tab" data-view="settings" data-url="/settings/">
         <!-- Settings page will be loaded here dynamically from /settings/ route -->
       </div>
