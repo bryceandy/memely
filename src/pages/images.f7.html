@@ -52,7 +52,7 @@
           {{#images}}
             <li class="item-content">
               <div class="item-inner">
-                <div class="item-title">{{this}}</div>
+                <div class="item-title link" @click="displayPlainImage('{{this}}')">{{this}}</div>
               </div>
             </li>
           {{/images}}
@@ -72,6 +72,12 @@ export default {
             this.$$('.images-subnavbar-title').hide();
             this.$$('.images-searchbar').show();
             this.$app.searchbar.get('.images-searchbar').enable()
+        },
+        displayPlainImage (imageName) {
+            return this.$app.views.current.router.navigate({
+                name: 'download-image',
+                params: { name: imageName },
+            })
         }
     },
     on: {

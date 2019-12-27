@@ -3,6 +3,7 @@ import AppTourFinalPage from '../pages/app-tour-final.f7.html'
 
 import HomePage from '../pages/home.f7.html'
 import ImagesPage from '../pages/images.f7.html'
+import DownloadImagePage from '../pages/download-image.f7.html'
 import GifsPage from '../pages/gifs.f7.html'
 import CatalogPage from '../pages/catalog.f7.html'
 import SettingsPage from '../pages/settings.f7.html'
@@ -41,17 +42,14 @@ var routes = [
         success(data, status, xhr) {
 
           setTimeout(() => {
-            resolve (
-              {
-                component: ImagesPage
-              },
-              {
-                context: {
-                  images: data
-                }
+            resolve ({
+              component: ImagesPage
+            },{
+              context: {
+                images: data
               }
-            )
-          }, 500)
+            })
+          }, 100)
         },
         error(xhr, status) {
           reject();
@@ -64,6 +62,25 @@ var routes = [
         }
       })
     },
+  },
+  {
+    path: '/image/get/:name/',
+    name: 'download-image',
+    async: function (routeTo, routeFrom, resolve, reject) {
+
+      const app = this.app, imageName = routeTo.params.name;
+      app.preloader.show('orange');
+
+      setTimeout(() => {
+        resolve({
+          component: DownloadImagePage
+        },{
+          context: {
+            name: imageName
+          }
+        })
+      }, 2000)
+    }
   },
   {
     path: '/gifs/',
