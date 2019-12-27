@@ -72,6 +72,7 @@ var routes = [
       app.preloader.show('orange');
 
       setTimeout(() => {
+        app.preloader.hide();
         resolve({
           component: DownloadImagePage
         },{
