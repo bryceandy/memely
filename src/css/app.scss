@@ -5,7 +5,7 @@
 @import "variables";
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-// Default body
+// Defaults
 body {
   font: {
     family: "Avenir Next", "Lato";
@@ -29,6 +29,14 @@ body {
   }
 }
 
+.title-logo {
+  height: calc(var(--f7-navbar-height) + var(--f7-safe-area-top));
+  width: auto;
+
+  .title-logo-large {
+    height: var(--f7-navbar-large-title-height)
+  }
+}
 // Load other stylesheets
 @import "pages/app-tour";
 @import "pages/images";
