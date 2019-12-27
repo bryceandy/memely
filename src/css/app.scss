@@ -33,7 +33,7 @@ body {
   height: calc(var(--f7-navbar-height) + var(--f7-safe-area-top));
   width: auto;
 
-  .title-logo-large {
+  &.title-logo-large {
     height: var(--f7-navbar-large-title-height)
   }
 }
