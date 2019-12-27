@@ -6,16 +6,23 @@
 }
 
 .home-page-content {
-  .click-to-searchbox{
+  .click-to-searchbox, .caption-row{
     color: $secondary-color
   }
-  .or-block {
-    color: $secondary-light-shade
-  }
+  /*.or-block {
+    color: $secondary-color
+  }*/
   .user-action-row {
     .link{
-      height: 30vh;
+      height: 10vh;
       @include brad(8px);
+      .icon {
+        font-size: 8vh;
+        color: $secondary-color
+      }
     }
+  }
+  .col-60 {
+    margin-left: 20%
   }
 }

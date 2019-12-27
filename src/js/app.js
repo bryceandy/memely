@@ -74,7 +74,7 @@ let startUrl = '/app-tour/';
 const currentUser = JSON.parse(localStorage.getItem("user"));
 
 if (currentUser.passedTour) {
-  startUrl = '/'
+  startUrl = '/images/'
 }
 
 // Choose which route to load
