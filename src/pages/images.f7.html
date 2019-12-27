@@ -11,43 +11,44 @@
           <img src="static/memely.svg" alt="logo" class="title-logo">
         </div>
         <div class="subnavbar">
-          <!-- Searchbar with auto init -->
-          {{#js_if 'this.searching'}}
-            <form class="searchbar">
-              <div class="searchbar-inner">
-                <div class="searchbar-input-wrap">
-                  <input type="search" placeholder="Search">
-                  <i class="searchbar-icon"></i>
-                  <span class="input-clear-button"></span>
+          <div class="subnavbar-inner">
+            <!-- Searchbar with auto init -->
+            {{#js_if 'this.searching'}}
+              <form class="searchbar">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Search" name="searchImage">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
                 </div>
-                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+              </form>
+            {{else}}
+              <div class="subnavbar-title">
+                images
               </div>
-            </form>
-          {{else}}
-            <div class="subnavbar-title">
-              images
-            </div>
-          {{/js_if}}
+            {{/js_if}}
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Scrollable page content-->
     <div class="page-content images-page-content">
-      {{#js_if '!this.searching && !this.uploading'}}
-        <div class="block">
-          <div class="row user-action-row">
-            <div class="link col-45 card text-align-center vertical-align-middle text-color-gray" @click="fireSearch">
-              <i class="icon f7-icons">search</i>
-              <p>Search</p>
-            </div>
-            <div class="link col-45 card text-align-center vertical-align-middle text-color-gray">
-              <i class="icon f7-icons">cloud_upload</i>
-              <p>Upload</p>
-            </div>
+      <div class="searchbar-backdrop"></div>
+      <div class="block searchbar-hide-on-search">
+        <div class="row user-action-row">
+          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray" @click="fireSearch">
+            <i class="icon f7-icons">search</i>
+            <p>Search</p>
+          </div>
+          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray">
+            <i class="icon f7-icons">cloud_upload</i>
+            <p>Upload</p>
           </div>
         </div>
-      {{/js_if}}
+      </div>
     </div>
   </div>
 </template>
@@ -61,9 +62,11 @@ export default {
     },
     methods: {
         fireSearch () {
-            return this.$setState({
+            this.$setState({
                 searching: true
-            })
+            });
+            // TODO: Not working
+            this.$$('[name="searchImage"]').trigger('keydown')
         }
     },
     on: {
