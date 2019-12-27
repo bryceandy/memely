@@ -1,0 +1,15 @@
+@import "../variables";
+
+.download-image-page-content {
+  overflow: hidden;
+  width: 100%;
+
+  #response {
+    img {
+      width: 80%;
+      margin-left: 10%;
+      height: auto;
+      @include brad(8px)
+    }
+  }
+}
