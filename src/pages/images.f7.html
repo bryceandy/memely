@@ -14,10 +14,10 @@
           <div class="subnavbar-inner">
             <!-- Searchbar with auto init -->
             {{#js_if 'this.searching'}}
-              <form class="searchbar">
+              <form class="searchbar searchbar-init" data-search-container=".list" data-search-in=".item-title" data-search-backdrop="true">
                 <div class="searchbar-inner">
                   <div class="searchbar-input-wrap">
-                    <input type="search" placeholder="Search" name="searchImage">
+                    <input type="search" placeholder="Search" name="searchImage" id="searchImage">
                     <i class="searchbar-icon"></i>
                     <span class="input-clear-button"></span>
                   </div>
@@ -48,6 +48,35 @@
             <p>Upload</p>
           </div>
         </div>
+      </div>
+      <!-- search target list -->
+      <div class="list searchbar-found">
+        <ul>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Acura</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Audi</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">BMW</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Volvo</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Nothing found message -->
+      <div class="block searchbar-not-found">
+        <div class="block-inner">Nothing found</div>
       </div>
     </div>
   </div>
@@ -87,7 +116,11 @@ export default {
                 // From now on the app wont go back to the app-tour-pages
                 localStorage.setItem("user", JSON.stringify(newDetails))
             }
-            //
+            // Searching
+            $$('input[name="searchImage"]').keydown( function () {
+                alert('hey')
+                //console.log($$(this).val())
+            })
         }
     }
 }
