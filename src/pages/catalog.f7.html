@@ -107,6 +107,7 @@
               const $$ = this.$, myApp = this.$app, component = this;
               myApp.preloader.show("orange");
 
+              // Using xmlhttp we can obtain a blob
               let oReq = new XMLHttpRequest();
 
               oReq.open("GET", myApp.data.requestingDomain+"meme?font=Impact&font_size=50&meme=Scumbag-Steve&top=Ooh&bottom=You%20Really%20Thought", true);
