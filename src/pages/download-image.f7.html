@@ -62,7 +62,7 @@
                     dir.getFile(fileName, { create: false }, function (fileEntry) {
                         // Delete
                         fileEntry.remove( function () {
-                            myApp.views.current.router.refreshPage();
+                            myApp.views.current.router.back();
                             myApp.toast.create({
                                 icon: '<i class="f7-icons">checkmark_alt</i>',
                                 text: 'Deleted!',
@@ -101,7 +101,7 @@
                             }).open();
                             // Delete from tmp
                             fileEntry.remove();
-                            myApp.views.current.router.refreshPage();
+                            myApp.views.current.router.back();
                         })
                     }, function () {
                         myApp.toast.create({
