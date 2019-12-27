@@ -6,7 +6,6 @@ import ImagesPage from '../pages/images.f7.html'
 import GifsPage from '../pages/gifs.f7.html'
 import CatalogPage from '../pages/catalog.f7.html'
 import SettingsPage from '../pages/settings.f7.html'
-import {app} from "./app";
 
 var routes = [
   {
@@ -27,6 +26,9 @@ var routes = [
   {
     path: '/images/',
     async: function (routeTo, routeFrom, resolve, reject) {
+
+      const app = this.app;
+
       // Request
       app.request({
         url: app.data.requestingDomain+'images',
@@ -38,14 +40,18 @@ var routes = [
         dataType: 'json',
         success(data, status, xhr) {
 
-          resolve ({
-            component: ImagesPage
-          },
-          {
-            context: {
-              images: data
-            }
-          })
+          setTimeout(() => {
+            resolve (
+              {
+                component: ImagesPage
+              },
+              {
+                context: {
+                  images: data
+                }
+              }
+            )
+          }, 500)
         },
         error(xhr, status) {
           reject();
