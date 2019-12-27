@@ -66,22 +66,7 @@ var routes = [
   {
     path: '/image/get/:name/',
     name: 'download-image',
-    async: function (routeTo, routeFrom, resolve, reject) {
-
-      const app = this.app, imageName = routeTo.params.name;
-      app.preloader.show('orange');
-
-      setTimeout(() => {
-        app.preloader.hide();
-        resolve({
-          component: DownloadImagePage
-        },{
-          context: {
-            name: imageName
-          }
-        })
-      }, 2000)
-    }
+    component: DownloadImagePage
   },
   {
     path: '/gifs/',
