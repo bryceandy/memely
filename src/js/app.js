@@ -82,4 +82,4 @@ app.views.create('.view-main', {
   url: startUrl
 });
 
-export {app}
+export {app};

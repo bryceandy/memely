@@ -26,7 +26,7 @@ var routes = [
   },
   {
     path: '/images/',
-    async (routeTo, routeFrom, resolve, reject) {
+    async: function (routeTo, routeFrom, resolve, reject) {
       // Request
       app.request({
         url: app.data.requestingDomain+'images',
