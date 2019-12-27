@@ -6,6 +6,7 @@ import ImagesPage from '../pages/images.f7.html'
 import GifsPage from '../pages/gifs.f7.html'
 import CatalogPage from '../pages/catalog.f7.html'
 import SettingsPage from '../pages/settings.f7.html'
+import {app} from "./app";
 
 var routes = [
   {
