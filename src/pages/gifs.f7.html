@@ -20,7 +20,7 @@
 
     <!-- Scrollable page content-->
     <div class="page-content gifs-page-content">
-      <div id="gifs" class="block"></div>
+      <div id="gifs" class="margin"></div>
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@
                     dataType: 'json',
                     success(data, status, xhr) {
                         data.data.forEach(function (gif) {
-                            $$('#gifs').append(`<img src="`+gif.images.downsized_large.url+`" alt="`+gif.id+`" height="`+gif.images.downsized_large.height+`" width="`+gif.images.downsized_large.width+`"/>`)
+                            $$('#gifs').append(`<img class="elevation-2" src="`+gif.images.downsized_large.url+`" alt="`+gif.id+`" height="`+gif.images.downsized_large.height+`"/>`)
                         })
                     },
                     error(xhr, status) {

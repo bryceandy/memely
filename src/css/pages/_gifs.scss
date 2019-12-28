@@ -1,0 +1,14 @@
+@import "../variables";
+
+.gifs-page-content {
+  overflow-x: hidden;
+  width: 100%;
+
+  #gifs{
+    img {
+      width: auto;
+      max-width: 100%;
+      @include brad(8px)
+    }
+  }
+}
