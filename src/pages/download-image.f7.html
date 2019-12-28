@@ -28,13 +28,13 @@
     <div class="page-content download-image-page-content">
       <div class="row margin-top">
         {{#if downloaded}}
-          <button class="button button-fill button-round button-large margin-left col-45" @click="discardFile('{{myFile}}')">
+          <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
             Discard
           </button>
-          <button class="button button-raised button-round button-large margin-right col-45" @click="editFile('{{myFile}}')">
+          <button class="button button-fill button-round button-large margin-right col-45" @click="editImage('{{myFile}}')">
             Edit
           </button>
-          <!--<button class="button button-raised button-round button-large margin-right col-45" @click="shareFile('{{myFile}}')">
+          <!--<button class="button button-raised button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
             Share
           </button>-->
         {{/if}}
@@ -42,6 +42,9 @@
 
       <div id="response" class="block">
       </div>
+      {{#if editing}}
+
+      {{/if}}
     </div>
   </div>
 </template>
@@ -50,11 +53,12 @@
         data: function () {
             return {
                 downloaded: false,
-                myFile: null
+                myFile: null,
+                editing: false
             }
         },
         methods: {
-            discardFile (fileName) {
+            discardImage (fileName) {
                 // Fetch the file
                 let fileDirectory = cordova.file.externalApplicationStorageDirectory;
                 const myApp = this.$app;
@@ -84,10 +88,15 @@
                     })
                 })
             },
-            editFile (fileName) {
-
+            editImage (fileName) {
+                // Change state
+                this.$setState({
+                    downloaded: false,
+                    myFile: fileName,
+                    editing: true
+                });
             },
-            shareFile (fileName) {
+            shareMeme (fileName) {
                 // Fetch the file
                 let fileDirectory = cordova.file.externalApplicationStorageDirectory;
                 const myApp = this.$app;
