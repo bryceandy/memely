@@ -142,7 +142,8 @@ component.downloadImage();
                 oReq.onload = function () {
 
                     if ( oReq.response ) {
-                        return saveAndRead(oReq.response)
+                        //return saveAndRead(oReq.response)
+                        return myApp.preloader.hide();
                     }
                     myApp.preloader.hide();
                     return myApp.toast.create({
