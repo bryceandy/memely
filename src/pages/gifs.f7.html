@@ -92,7 +92,7 @@
 
                 // See trending gifs
                 myApp.request({
-                    url: 'https://api.giphy.com/v1/gifs/trending?limit=50&api_key='+myApp.data.giphyApiKey,
+                    url: 'https://api.giphy.com/v1/gifs/trending?limit=100&api_key='+myApp.data.giphyApiKey,
                     method: 'GET',
                     dataType: 'json',
                     success(data, status, xhr) {
