@@ -27,7 +27,7 @@
         </div>
         <div class="title-large">
           <div class="title-large-text">
-            gifs
+            trending gifs
           </div>
         </div>
       </div>
@@ -35,7 +35,8 @@
 
     <!-- Scrollable page content-->
     <div class="page-content gifs-page-content">
-      <div id="gifs" class="margin searchbar-hide-on-search"></div>
+      <div id="gifs" class="margin searchbar-hide-on-search">
+      </div>
       <div id="gif-search-results" class="margin"></div>
     </div>
   </div>
@@ -56,7 +57,6 @@
                     on: {
                         search (sb, query, previousQuery) {
                             myApp.preloader.show('orange');
-                            $$('#gif-search-results').empty();
 
                             // Request
                             myApp.request({
@@ -65,8 +65,11 @@
                                 dataType: 'json',
                                 success(data, status, xhr) {
                                     myApp.preloader.hide();
+                                    // Clear and render results
+                                    $$('#gif-search-results').empty();
+
                                     data.data.forEach(function (gif) {
-                                        $$('#gif-search-results').append(`<img class="elevation-2" src="`+gif.images.downsized_large.url+`" alt="`+gif.id+`" height="`+gif.images.downsized_large.height+`"/>`)
+                                        $$('#gif-search-results').append(`<img class="elevation-2" src="`+gif.images.fixed_width_downsampled.url+`" alt="`+gif.id+`"/>`)
                                     })
                                 },
                                 error(xhr, status) {
@@ -94,7 +97,7 @@
                     dataType: 'json',
                     success(data, status, xhr) {
                         data.data.forEach(function (gif) {
-                            $$('#gifs').append(`<img class="elevation-2" src="`+gif.images.downsized_large.url+`" alt="`+gif.id+`" height="`+gif.images.downsized_large.height+`"/>`)
+                            $$('#gifs').append(`<img class="elevation-2" src="`+gif.images.fixed_width_downsampled.url+`" alt="`+gif.id+`"/>`)
                         })
                     },
                     error(xhr, status) {

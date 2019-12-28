@@ -6,9 +6,9 @@
 
   #gifs, #gif-search-results {
     img {
-      width: auto;
-      max-width: 100%;
-      margin-right: 5px;
+      width: calc(50% - 10px);
+      height: auto;
+      margin: 5px;
       @include brad(8px)
     }
   }
