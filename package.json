@@ -11,7 +11,7 @@
       "cordova"
     ],
     "name": "memely",
-    "pkg": "com.bryce.memely",
+    "pkg": "com.bryceandy.memely",
     "framework": "core",
     "template": "tabs",
     "bundler": "webpack",
