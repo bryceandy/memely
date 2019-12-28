@@ -50,7 +50,7 @@
     export default {
         on: {
             pageInit () {
-                const myApp = this.$app, $$ = this.$$;
+                const myApp = this.$app, $$ = this.$$, router = this.$router;
 
                 // Create searchbar
                 myApp.searchbar.create({
