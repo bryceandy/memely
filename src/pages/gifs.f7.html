@@ -35,12 +35,16 @@
 
     <!-- Scrollable page content-->
     <div class="page-content gifs-page-content">
-      <div id="gifs" class="margin"></div>
+      <div id="gifs" class="margin searchbar-hide-on-search"></div>
+      <div id="gif-search-results" class="margin"></div>
     </div>
   </div>
 </template>
 <script>
     export default {
+        searchbar: {
+
+        },
         on: {
             pageInit () {
                 const myApp = this.$app, $$ = this.$$;
@@ -48,15 +52,37 @@
                 // Create searchbar
                 myApp.searchbar.create({
                     el: '.gifs-searchbar',
-                    searchContainer: '.list',
-                    searchIn: '.item-title',
+                    customSearch: true,
                     on: {
                         search (sb, query, previousQuery) {
-                            //console.log(query, previousQuery);
+                            myApp.preloader.show('orange');
+                            $$('#gif-search-results').empty();
+
+                            // Request
+                            myApp.request({
+                                url: 'https://api.giphy.com/v1/gifs/search?q='+query+'&api_key='+myApp.data.giphyApiKey,
+                                method: 'GET',
+                                dataType: 'json',
+                                success(data, status, xhr) {
+                                    myApp.preloader.hide();
+                                    data.data.forEach(function (gif) {
+                                        $$('#gif-search-results').append(`<img class="elevation-2" src="`+gif.images.downsized_large.url+`" alt="`+gif.id+`" height="`+gif.images.downsized_large.height+`"/>`)
+                                    })
+                                },
+                                error(xhr, status) {
+                                    myApp.preloader.hide();
+                                    myApp.toast.create({
+                                        text: 'Failed to load gifs '+status,
+                                        closeButton: true,
+                                        closeButtonText: 'OK',
+                                        closeButtonColor: 'red',
+                                        closeTimeout: 4000,
+                                    }).open()
+                                }
+                            })
                         },
                         disable () {
-                            $$('.images-subnavbar').hide();
-                            $$('.images-title-large').show();
+                            $$('#gif-search-results').empty()
                         }
                     }
                 });
