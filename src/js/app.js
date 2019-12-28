@@ -39,8 +39,7 @@ var app = new Framework7({
       XRapidAPIKey: '5a5db81725mshedb8ee9d33ab24fp163f56jsnc051c51e6ced',
       XRapidAPIHost: 'ronreiter-meme-generator.p.rapidapi.com',
       requestingDomain: 'https://ronreiter-meme-generator.p.rapidapi.com/',
-      igAppId: 2368452289927461,
-      igAppSecret: '9fa95fe6a8621962a78c2a5e8f3b3e07'
+      giphyApiKey: 'z5uTq4UNIpz91ygOfby4QwFcE3hsDu7m'
     };
   },
   // App root methods
