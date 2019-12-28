@@ -34,7 +34,12 @@
     </div>
 
     <!-- Scrollable page content-->
-    <div class="page-content gifs-page-content">
+    <div class="page-content gifs-page-content ptr-content" data-ptr-distance="55" data-ptr-mousewheel="false">
+      <!-- Default pull to refresh preloader-->
+      <div class="ptr-preloader gifs-ptr">
+        <div class="preloader"></div>
+        <div class="ptr-arrow"></div>
+      </div>
       <div id="gifs" class="margin searchbar-hide-on-search">
       </div>
       <div id="gif-search-results" class="margin"></div>
@@ -106,6 +111,11 @@
                             closeTimeout: 4000,
                         }).open()
                     }
+                });
+
+                // Pull to refresh
+                $$('.gifs-page-content').on('ptr:pullend', function () {
+                        setTimeout(() => router.refreshPage(), 3000)
                 })
             }
         }
