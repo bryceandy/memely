@@ -12,7 +12,7 @@
         </div>
         <div class="title-large">
           <div class="title-large-text">
-            <img src="static/memely.svg" alt="logo" class="title-logo title-logo-large">
+            gifs
           </div>
         </div>
       </div>
@@ -20,6 +20,17 @@
 
     <!-- Scrollable page content-->
     <div class="page-content gifs-page-content">
+      <div class="searchbar-backdrop"></div>
+      <form class="searchbar gifs-searchbar">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="Search">
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button">Cancel</span>
+        </div>
+      </form>
       <div id="gifs" class="margin"></div>
     </div>
   </div>
@@ -32,7 +43,7 @@
 
                 // See trending gifs
                 myApp.request({
-                    url: 'https://api.giphy.com/v1/gifs/trending?api_key='+myApp.data.giphyApiKey,
+                    url: 'https://api.giphy.com/v1/gifs/trending?limit=50&api_key='+myApp.data.giphyApiKey,
                     method: 'GET',
                     dataType: 'json',
                     success(data, status, xhr) {
