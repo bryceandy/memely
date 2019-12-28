@@ -31,9 +31,12 @@
           <button class="button button-fill button-round button-large margin-left col-45" @click="discardFile('{{myFile}}')">
             Discard
           </button>
-          <button class="button button-raised button-round button-large margin-right col-45" @click="shareFile('{{myFile}}')">
+          <button class="button button-raised button-round button-large margin-right col-45" @click="editFile('{{myFile}}')">
             Share
           </button>
+          <!--<button class="button button-raised button-round button-large margin-right col-45" @click="shareFile('{{myFile}}')">
+            Share
+          </button>-->
         {{/if}}
       </div>
 
@@ -81,6 +84,9 @@
                     })
                 })
             },
+            editFile (fileName) {
+
+            },
             shareFile (fileName) {
                 // Fetch the file
                 let fileDirectory = cordova.file.externalApplicationStorageDirectory;
@@ -114,21 +120,22 @@
                     })
                 })
             },
-            downloadImage (font, font_size, meme, top, bottom) {
-                top.replace(' ', '%20');
-                bottom.replace(' ', '%20');
+            downloadImage () {//font, font_size, meme, top, bottom
+                /*top.replace(' ', '%20');
+                bottom.replace(' ', '%20');*/
+                console.log('Done')
             }
         },
         on: {
             pageInit () {
                 const myApp = this.$app, $$ = this.$$, meme = this.$route.params.name, component = this;
-
+component.downloadImage();
                 // Save the requested image temporarily to display in the device it
                 myApp.preloader.show('orange');
                 // Using xmlhttp we can obtain a blob
                 let oReq = new XMLHttpRequest();
 
-                oReq.open("GET", myApp.data.requestingDomain+"meme?font=Impact&font_size=50&meme="+meme+"&top=%20&bottom=%20", true);
+                oReq.open("GET", myApp.data.requestingDomain+"meme?font=Impact&font_size=50&meme="+meme+"&top=top%20text&bottom=bottom%20text", true);
                 oReq.responseType = "blob";
                 oReq.setRequestHeader("x-rapidapi-host", myApp.data.XRapidAPIHost);
                 oReq.setRequestHeader("x-rapidapi-key", myApp.data.XRapidAPIKey);
