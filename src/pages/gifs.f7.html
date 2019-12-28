@@ -5,8 +5,23 @@
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="right">
-          {{> "menu-link"}}
+          <!-- Link to enable searchbar -->
+          <a class="link icon-only searchbar-enable" data-searchbar=".gifs-searchbar">
+            <i class="icon f7-icons if-not-md">search</i>
+            <i class="icon material-icons md-only">search</i>
+          </a>
         </div>
+        <!-- Searchbar is a direct child of "navbar-inner" -->
+        <form class="searchbar gifs-searchbar searchbar-expandable">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input type="search" placeholder="Search"/>
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button">Cancel</span>
+          </div>
+        </form>
         <div class="title sliding">
           <img src="static/memely.svg" alt="logo" class="title-logo">
         </div>
@@ -20,17 +35,6 @@
 
     <!-- Scrollable page content-->
     <div class="page-content gifs-page-content">
-      <div class="searchbar-backdrop"></div>
-      <form class="searchbar gifs-searchbar">
-        <div class="searchbar-inner">
-          <div class="searchbar-input-wrap">
-            <input type="search" placeholder="Search">
-            <i class="searchbar-icon"></i>
-            <span class="input-clear-button"></span>
-          </div>
-          <span class="searchbar-disable-button">Cancel</span>
-        </div>
-      </form>
       <div id="gifs" class="margin"></div>
     </div>
   </div>
@@ -40,6 +44,22 @@
         on: {
             pageInit () {
                 const myApp = this.$app, $$ = this.$$;
+
+                // Create searchbar
+                myApp.searchbar.create({
+                    el: '.gifs-searchbar',
+                    searchContainer: '.list',
+                    searchIn: '.item-title',
+                    on: {
+                        search (sb, query, previousQuery) {
+                            //console.log(query, previousQuery);
+                        },
+                        disable () {
+                            $$('.images-subnavbar').hide();
+                            $$('.images-title-large').show();
+                        }
+                    }
+                });
 
                 // See trending gifs
                 myApp.request({
