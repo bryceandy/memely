@@ -7,22 +7,16 @@
   #gifs, #gif-search-results {
     width: 100%;
     img {
-      width: calc(50% - 10px);
+      width: 95%;
       height: auto;
-      margin: 5px;
+      margin-top: 2px;
       @include brad(8px)
     }
-    .left, .right {
-      position: absolute;
-      width: 50%;
-      top: 0;
-      height: 100%
+    .left-image {
+      margin-left: 5%
     }
-    .left {
-      left: 0
-    }
-    .right {
-      left: 50%
+    .right-image {
+      margin-right: 5%
     }
   }
 }

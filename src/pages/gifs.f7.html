@@ -40,11 +40,14 @@
         <div class="preloader"></div>
         <div class="ptr-arrow"></div>
       </div>
-      <div id="gifs" class="margin searchbar-hide-on-search">
-        <div class="left"></div>
-        <div class="right"></div>
+      <div id="gifs" class="margin-top-half row searchbar-hide-on-search">
+        <div class="left col-50"></div>
+        <div class="right col-50"></div>
       </div>
-      <div id="gif-search-results" class="margin"></div>
+      <div id="gif-search-results" class="margin-top-half row">
+        <div class="left col-50"></div>
+        <div class="right col-50"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -71,10 +74,16 @@
                                 success(data, status, xhr) {
                                     myApp.preloader.hide();
                                     // Clear and render results
-                                    $$('#gif-search-results').empty();
+                                    $$('#gif-search-results .left').empty();
+                                    $$('#gif-search-results .right').empty();
 
-                                    data.data.forEach(function (gif) {
-                                        $$('#gif-search-results').append(`<img class="elevation-2" src="`+gif.images.fixed_width_downsampled.url+`" alt="`+gif.id+`"/>`)
+                                    data.data.forEach(function (gif, index) {
+                                        if (index % 2 === 0) {
+                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                        }
+                                        else {
+                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                        }
                                     })
                                 },
                                 error(xhr, status) {
@@ -90,7 +99,8 @@
                             })
                         },
                         disable () {
-                            $$('#gif-search-results').empty()
+                            $$('#gif-search-results .left').empty();
+                            $$('#gif-search-results .right').empty()
                         }
                     }
                 });
@@ -103,10 +113,10 @@
                     success(data, status, xhr) {
                         data.data.forEach(function (gif, index) {
                             if (index % 2 === 0) {
-                                $$('#gifs .left').append(`<img class="elevation-2" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .left').append(`<img class="elevation-2 left-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                             else {
-                                $$('#gifs .right').append(`<img class="elevation-2" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .right').append(`<img class="elevation-2 right-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                         })
                     },
