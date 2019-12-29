@@ -41,11 +41,14 @@
         <div class="ptr-arrow"></div>
       </div>
       <div id="gifs" class="margin searchbar-hide-on-search">
+        <div class="left"></div>
+        <div class="right"></div>
       </div>
       <div id="gif-search-results" class="margin"></div>
     </div>
   </div>
 </template>
+
 <script>
     export default {
         on: {
@@ -98,8 +101,13 @@
                     method: 'GET',
                     dataType: 'json',
                     success(data, status, xhr) {
-                        data.data.forEach(function (gif) {
-                            $$('#gifs').append(`<img class="elevation-2" src="`+gif.images.fixed_width_downsampled.url+`" alt="`+gif.id+`"/>`)
+                        data.data.forEach(function (gif, index) {
+                            if (index % 2 === 0) {
+                                $$('#gifs .left').append(`<img class="elevation-2" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            }
+                            else {
+                                $$('#gifs .right').append(`<img class="elevation-2" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            }
                         })
                     },
                     error(xhr, status) {
