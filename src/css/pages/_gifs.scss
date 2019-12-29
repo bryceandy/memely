@@ -5,11 +5,24 @@
   width: 100%;
 
   #gifs, #gif-search-results {
+    width: 100%;
     img {
       width: calc(50% - 10px);
       height: auto;
       margin: 5px;
       @include brad(8px)
+    }
+    .left, .right {
+      position: absolute;
+      width: 50%;
+      top: 0;
+      height: 100%
+    }
+    .left {
+      left: 0
+    }
+    .right {
+      left: 50%
     }
   }
 }
