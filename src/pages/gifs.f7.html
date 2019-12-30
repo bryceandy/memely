@@ -243,6 +243,7 @@
             }),
             gifOptions (id) {
                 const myApp = this.$app;
+
                 // Gif will be known in the component
                 this.$setState({
                     activeGif: id,
@@ -262,7 +263,8 @@
                 console.log(gifUrl)
             },
             shareGif (id) {
-                const myApp = this.$app, component = this;
+                const component = this;
+                const myApp = component.$app;
 
                 myApp.actions.create({
                     buttons: [
@@ -318,7 +320,10 @@
                 }).open(true);
             },
             saveGif (id) {
-                const myApp = this.$app, $$ = this.$$, component = this;
+                const component = this;
+                const myApp = component.$app;
+                const $$ = component.$$;
+
                 myApp.preloader.show('orange');
 
                 // Get download url from data-url attribute
@@ -355,6 +360,7 @@
                 oReq.send(null);
             },
             saveTemp (blob)  {
+                // Save to temp and move to the desired location
                 const fileName = new Date().getTime()+'.gif';
                 const myApp = this.$app;
 

@@ -101,13 +101,17 @@
             },
             shareMeme (fileName) {
                 const myApp = this.$app;
+
                 myApp.methods.saveToCameraRoll(fileName);
                 myApp.views.current.router.back()
             },
             downloadImage (font, font_size, meme, top, bottom) {
                 // Declarations
-                const myApp = this.$app, $$ = this.$$, component = this,
-                top_text = top.replace(' ', '%20'), bottom_text = bottom.replace(' ', '%20');
+                const component = this;
+                const myApp = component.$app;
+                const $$ = component.$$;
+                const top_text = top.replace(' ', '%20');
+                const bottom_text = bottom.replace(' ', '%20');
 
                 // Save the requested image temporarily to display in the device it
                 myApp.preloader.show('orange');
