@@ -170,8 +170,7 @@
                     });
 
                     gifs.forEach( (gif, index) => {
-                        if (! loadedIds.includes(gif.id, 50)) {
-
+                        if (! loadedIds.includes(gif.id)) {
                             if (index % 2 === 0) {
                                 $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
