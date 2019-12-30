@@ -67,13 +67,13 @@ var app = new Framework7({
   },
   // App root methods
   methods: {
-    saveCameraRoll (fileName) {
+    saveToCameraRoll (fileName) {
       // Fetch the file
       let fileDirectory = cordova.file.externalApplicationStorageDirectory;
-
       if (app.device.ios) fileDirectory = cordova.file.tempDirectory;
 
       window.resolveLocalFileSystemURL(fileDirectory, function (dir) {
+
         dir.getFile(fileName, { create: false }, function (fileEntry) {
 
           const filePath = fileEntry.toURL();

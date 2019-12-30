@@ -100,37 +100,9 @@
                 });
             },
             shareMeme (fileName) {
-                // Fetch the file
-                let fileDirectory = cordova.file.externalApplicationStorageDirectory;
                 const myApp = this.$app;
-
-                if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
-
-                window.resolveLocalFileSystemURL(fileDirectory, function (dir) {
-                    dir.getFile(fileName, { create: false }, function (fileEntry) {
-
-                        const filePath = fileEntry.toURL();
-                        window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
-                            myApp.toast.create({
-                                icon: '<i class="f7-icons">checkmark_alt</i>',
-                                text: 'Saved!',
-                                position: 'center',
-                                closeTimeout: 4000,
-                            }).open();
-                            // Delete from tmp
-                            fileEntry.remove();
-                            myApp.views.current.router.back();
-                        })
-                    }, function () {
-                        myApp.toast.create({
-                            text: 'The file does not exist',
-                            closeButton: true,
-                            closeButtonText: 'OK',
-                            closeButtonColor: 'red',
-                            closeTimeout: 4000,
-                        }).open()
-                    })
-                })
+                myApp.methods.saveToCameraRoll(fileName);
+                myApp.views.current.router.back()
             },
             downloadImage (font, font_size, meme, top, bottom) {
                 // Declarations
