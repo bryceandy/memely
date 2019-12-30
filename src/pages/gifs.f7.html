@@ -63,8 +63,34 @@
       </div>
       <div class="sheet-modal-inner">
         <!-- Sheet Modal content -->
-        <div class="block">
-          <p>Integer mollis nulla id nibh elementum finibus...</p>
+        <div class="block" style="margin: 8px 0">
+          <div class="list no-hairlines no-hairlines-between" style="margin:0">
+            <ul>
+              <li class="item-content link sheet-close" @click="copyGif('{{activeGif}}')">
+                <div class="item-media">
+                  <i class="icon f7-icons">link</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">
+                    Copy gif link
+                  </div>
+                </div>
+              </li>
+              <li class="item-content link sheet-close" @click="shareGif('{{activeGif}}')">
+                <div class="item-media">
+                  <i class="icon f7-icons">arrow_turn_up_right</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">
+                    Share gif on
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <button class="button button-fill button-large button-round sheet-close">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
@@ -99,18 +125,64 @@
             }),
             gifOptions (id) {
                 const myApp = this.$app;
-
+                // Gif will be known in the component
                 this.$setState({
                     activeGif: id,
                 });
 
                 myApp.sheet.create({
                     el: '.gif-options-sheet-modal',
-                    swipeToClose: true
+                    swipeToClose: true,
+                    backdrop: true
                 }).open(true)
+            },
+            copyGif (id) {
+                const myApp = this.$app;
+
+            },
+            shareGif (id) {
+                this.$app.actions.create({
+                    buttons: [
+                        [
+                            {
+                                text: 'Share',
+                                label: true
+                            },
+                            {
+                                text: 'Mail',
+                            },
+                            {
+                                text: 'Messages',
+                            }
+                        ],
+                        [
+                            {
+                                text: 'Social share',
+                                label: true
+                            },
+                            {
+                                text: 'Facebook',
+                            },
+                            {
+                                text: 'Twitter',
+                            }
+                        ],
+                        [
+                            {
+                                text: 'Cancel',
+                                color: 'red'
+                            }
+                        ]
+                    ],
+                }).open(true);
             }
         },
         on: {
+            sheetClosed () {
+                this.$setState({
+                    activeGif: null
+                })
+            },
             pageInit () {
                 const myApp = this.$app, $$ = this.$$, component = this;
 

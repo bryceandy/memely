@@ -32,8 +32,14 @@
   &:before {
     display: none!important;
   }
-  .sheet-modal-inner {
-    background-color: $secondary-light-shade
+  .sheet-modal-inner, .sheet-modal-inner .list, .sheet-modal-inner .list ul {
+    background-color: $secondary-light-shade;
+    color: #fff
+  }
+  .sheet-modal-inner .list ul {
+    i {
+      color: lightgray
+    }
   }
   .toolbar {
     .title {
