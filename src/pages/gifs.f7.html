@@ -54,9 +54,29 @@
 
 <script>
     export default {
+        methods: {
+            fetchTrendingGifs: ( async (app) => {
+
+                return await app.request.promise({
+                    url: 'https://api.giphy.com/v1/gifs/trending?limit=100&api_key='+app.data.giphyApiKey,
+                    method: 'GET',
+                    dataType: 'json'
+                }).then( (result) => {
+                    return result.data.data
+                }).catch( (reason) => {
+                    return app.toast.create({
+                        text: 'Failed to load gifs '+reason,
+                        closeButton: true,
+                        closeButtonText: 'OK',
+                        closeButtonColor: 'red',
+                        closeTimeout: 4000,
+                    }).open()
+                })
+            })
+        },
         on: {
             pageInit () {
-                const myApp = this.$app, $$ = this.$$;
+                const myApp = this.$app, $$ = this.$$, component = this;
 
                 // Create searchbar
                 myApp.searchbar.create({
@@ -105,36 +125,62 @@
                     }
                 });
 
-                // See trending gifs
-                myApp.request({
-                    url: 'https://api.giphy.com/v1/gifs/trending?limit=100&api_key='+myApp.data.giphyApiKey,
-                    method: 'GET',
-                    dataType: 'json',
-                    success(data, status, xhr) {
-                        data.data.forEach(function (gif, index) {
-                            if (index % 2 === 0) {
-                                $$('#gifs .left').append(`<img class="elevation-2 left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
-                            }
-                            else {
-                                $$('#gifs .right').append(`<img class="elevation-2 right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
-                            }
-                        })
-                    },
-                    error(xhr, status) {
-                        myApp.toast.create({
-                            text: 'Failed to load gifs '+status,
-                            closeButton: true,
-                            closeButtonText: 'OK',
-                            closeButtonColor: 'red',
-                            closeTimeout: 4000,
-                        }).open()
-                    }
-                })
+                // Display trending gifs
+                const output = new Promise( resolve => resolve(
+                    // Call fetchTrendingGifs method as a promise
+                    component.fetchTrendingGifs(myApp)
+                ));
+
+                promResult();
+                async function promResult() {
+                    // Assign the data result to a variable
+                    let gifs = await output;
+
+                    gifs.forEach(function (gif, index) {
+                        if (index % 2 === 0) {
+                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                        } else {
+                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                        }
+                    });
+                }
             },
             ptrPullEnd () {
-                // Pull to refresh event
-                const router = this.$router;
-                setTimeout(() => router.refreshPage(), 1000)
+                // Pull to refresh events for this page component
+                const component = this, $$ = component.$$;
+                const output = new Promise( resolve => resolve(
+                    // Call fetchTrendingGifs method as a promise
+                    component.fetchTrendingGifs(component.$app)
+                ));
+
+                promiseResult();
+                async function promiseResult() {
+                    // Assign the data result to a variable
+                    let gifs = await output;
+
+                    // Stop the ptr from loading
+                    setTimeout(() => {
+                        component.$app.ptr.done('.gifs-page-content')
+                    }, 1000);
+
+                    // Check for a new gif that is not loaded and prepend it
+                    let loadedIds = [];
+                    $$('#gifs .loaded-image').forEach( (element) => {
+                        loadedIds.push($$(element).prop("alt"))
+                    });
+
+                    gifs.forEach( (gif, index) => {
+                        if (! loadedIds.includes(gif.id, 50)) {
+
+                            if (index % 2 === 0) {
+                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            }
+                            else {
+                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            }
+                        }
+                    })
+                }
             }
         }
     }
