@@ -16,5 +16,12 @@ module.exports = {
   ],
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
+    ["@babel/plugin-transform-runtime", {
+      "corejs": false,
+      "helpers": false,
+      "regenerator": true,
+      "useESModules": false
+    }],
   ],
 };
+// To enable async/await with babel, install 'npm i @babel/plugin-transform-runtime --save-dev' and add parameters like above
