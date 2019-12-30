@@ -65,7 +65,7 @@
                     return result.data.data
                 }).catch( (reason) => {
                     return app.toast.create({
-                        text: 'Failed to load gifs '+reason,
+                        text: 'Failed to load gifs '+reason.status,
                         closeButton: true,
                         closeButtonText: 'OK',
                         closeButtonColor: 'red',
