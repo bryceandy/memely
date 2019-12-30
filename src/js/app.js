@@ -42,10 +42,7 @@ var app = new Framework7({
       giphyApiKey: 'z5uTq4UNIpz91ygOfby4QwFcE3hsDu7m'
     };
   },
-  // App root methods
-  methods: {
 
-  },
   // App routes
   routes: routes,
 
@@ -68,6 +65,42 @@ var app = new Framework7({
       }
     },
   },
+  // App root methods
+  methods: {
+    saveCameraRoll (fileName) {
+      // Fetch the file
+      let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+
+      if (app.device.ios) fileDirectory = cordova.file.tempDirectory;
+
+      window.resolveLocalFileSystemURL(fileDirectory, function (dir) {
+        dir.getFile(fileName, { create: false }, function (fileEntry) {
+
+          const filePath = fileEntry.toURL();
+
+          window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
+            app.toast.create({
+              icon: '<i class="f7-icons">checkmark_alt</i>',
+              text: 'Saved!',
+              position: 'center',
+              closeTimeout: 4000,
+            }).open();
+            // Delete from tmp
+            return fileEntry.remove()
+          })
+        },
+          function () {
+            app.toast.create({
+              text: 'The file does not exist',
+              closeButton: true,
+              closeButtonText: 'OK',
+              closeButtonColor: 'red',
+              closeTimeout: 4000,
+            }).open()
+        })
+      })
+    },
+  }
 });
 
 let startUrl = '/app-tour/';

@@ -134,10 +134,10 @@
 
                                     data.data.forEach(function (gif, index) {
                                         if (index % 2 === 0) {
-                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" data-url="` + gif.images.original.url + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                                         }
                                         else {
-                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" data-url="` + gif.images.original.url + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                                         }
                                     })
                                 },
@@ -173,15 +173,15 @@
 
                     gifs.forEach(function (gif, index) {
                         if (index % 2 === 0) {
-                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" data-url="` + gif.images.original.url + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                         } else {
-                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" data-url="` + gif.images.original.url + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                         }
                     });
                 }
 
                 // Gif options onclick
-                $$('#gifs').click('.link', function () {
+                $$('.gifs-page-content').click('img', function () {
                     return component.gifOptions($$(this).prop("alt"))
                 })
             },
@@ -212,10 +212,10 @@
                     gifs.forEach( (gif, index) => {
                         if (! loadedIds.includes(gif.id)) {
                             if (index % 2 === 0) {
-                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" data-url="` + gif.images.original.url + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                             else {
-                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" data-url="` + gif.images.original.url + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                         }
                     })
@@ -255,8 +255,11 @@
                 }).open(true)
             },
             copyGif (id) {
-                const myApp = this.$app;
+                const $$ = this.$$;
 
+                // Get url from data-url attribute
+                const gifUrl = $$('.gifs-page-content').find('img[alt="'+id+'"]').data("url");
+                console.log(gifUrl)
             },
             shareGif (id) {
                 const myApp = this.$app, component = this;
@@ -283,7 +286,7 @@
                             {
                                 text: 'Save gif',
                                 onClick: function () {
-                                    myApp.dialog.alert('share device')
+                                   component.saveGif(id)
                                 }
                             }
                         ],
@@ -313,7 +316,92 @@
                         ]
                     ],
                 }).open(true);
-            }
+            },
+            saveGif (id) {
+                const myApp = this.$app, $$ = this.$$, component = this;
+                myApp.preloader.show('orange');
+
+                // Get download url from data-url attribute
+                const gifUrl = $$('.gifs-page-content').find('img[alt="'+id+'"]').data("url");
+
+                // Using xmlhttp we can obtain a blob
+                let oReq = new XMLHttpRequest();
+
+                oReq.open("GET", gifUrl, true);
+                oReq.responseType = "blob";
+                oReq.onload = function () {
+
+                    if ( oReq.response ) {
+                        // Save to temporary storage
+                        return component.saveTemp(oReq.response)
+                    }
+                    myApp.preloader.hide();
+                    return myApp.toast.create({
+                        text: 'No response fetching the image!',
+                        closeButton: true,
+                        closeButtonText: 'OK',
+                        closeButtonColor: 'red',
+                    }).open()
+                };
+                oReq.onerror = function (err) {
+                    myApp.preloader.hide();
+                    return myApp.toast.create({
+                        text: 'An error occured '+err.message,
+                        closeButton: true,
+                        closeButtonText: 'OK',
+                        closeButtonColor: 'red',
+                    }).open()
+                };
+                oReq.send(null);
+            },
+            saveTemp (blob)  {
+                const fileName = new Date().getTime()+'.gif';
+                const myApp = this.$app;
+
+                let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+
+                if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
+
+                window.resolveLocalFileSystemURL( fileDirectory, function (dir) {
+
+                    // Create file in the accessed directory
+                    dir.getFile(fileName, { create: true }, function (fileEntry) {
+
+                        fileEntry.createWriter(
+                            // On success
+                            function (fileWriter) {
+
+                                fileWriter.onwriteend = function() {
+                                    myApp.preloader.hide();
+
+                                    // Save to iPhone camera roll
+                                    return myApp.methods.saveCameraRoll(fileName)
+                                };
+
+                                fileWriter.onerror = function(er) {
+                                    myApp.toast.create({
+                                        text: 'Unable to write file! '+er,
+                                        closeButton: true,
+                                        closeButtonText: 'OK',
+                                        closeButtonColor: 'red',
+                                    }).open()
+                                };
+
+                                fileWriter.write(blob);
+                            },
+                            // On error
+                            function (err) {
+                                myApp.toast.create({
+                                    text: 'Unable to create writer! '+err,
+                                    closeButton: true,
+                                    closeButtonText: 'OK',
+                                    closeButtonColor: 'red',
+                                }).open()
+                            }
+                        );
+                    })
+                })
+            },
         },
     }
 </script>
