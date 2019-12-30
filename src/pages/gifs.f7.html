@@ -141,7 +141,9 @@
 
             },
             shareGif (id) {
-                this.$app.actions.create({
+                const myApp = this.$app, component = this;
+
+                myApp.actions.create({
                     buttons: [
                         [
                             {
@@ -150,9 +152,21 @@
                             },
                             {
                                 text: 'Mail',
+                                onClick: function () {
+                                    myApp.dialog.alert('share mail')
+                                }
                             },
                             {
                                 text: 'Messages',
+                                onClick: function () {
+                                    myApp.dialog.alert('share messages')
+                                }
+                            },
+                            {
+                                text: 'Save gif',
+                                onClick: function () {
+                                    myApp.dialog.alert('share device')
+                                }
                             }
                         ],
                         [
@@ -162,9 +176,15 @@
                             },
                             {
                                 text: 'Facebook',
+                                onClick: function () {
+                                    myApp.dialog.alert('share facebook')
+                                }
                             },
                             {
                                 text: 'Twitter',
+                                onClick: function () {
+                                    myApp.dialog.alert('share twitter')
+                                }
                             }
                         ],
                         [
