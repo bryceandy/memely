@@ -27,7 +27,7 @@
 }
 .gif-options-sheet-modal {
   @include brad(16px 16px 0 0);
-  height: max-content;
+  height: auto;
 
   &:before {
     display: none!important;
@@ -39,6 +39,12 @@
   .sheet-modal-inner .list ul {
     i {
       color: lightgray
+    }
+    .item-content {
+      margin-bottom: 2%;
+      .item-title {
+        font-size: larger
+      }
     }
   }
   .toolbar {
