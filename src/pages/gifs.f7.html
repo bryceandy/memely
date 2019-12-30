@@ -55,9 +55,10 @@
       <div class="toolbar">
         <div class="toolbar-inner">
           <div class="left"></div>
-          <div class="right">
-            <a href="#" class="link sheet-close">Done</a>
+          <div class="title text-align-center">
+            Gif Options
           </div>
+          <div class="right"></div>
         </div>
       </div>
       <div class="sheet-modal-inner">
@@ -72,6 +73,11 @@
 
 <script>
     export default {
+        data () {
+            return {
+                activeGif: null
+            }
+        },
         methods: {
             fetchTrendingGifs: ( async (app) => {
 
@@ -94,7 +100,14 @@
             gifOptions (id) {
                 const myApp = this.$app;
 
-                myApp.sheet.open('.gif-options-sheet-modal', true)
+                this.$setState({
+                    activeGif: id,
+                });
+
+                myApp.sheet.create({
+                    el: '.gif-options-sheet-modal',
+                    swipeToClose: true
+                }).open(true)
             }
         },
         on: {

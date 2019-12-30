@@ -21,7 +21,25 @@
   }
 }
 
-.gif-options-sheet-modal {
-  background-color: $secondary-light-shade;
+.gif-options-sheet-modal .toolbar, .gif-options-sheet-modal .toolbar-inner {
+  background-color: lighten($secondary-light-shade, 5%);
   @include brad(16px 16px 0 0)
+}
+.gif-options-sheet-modal {
+  @include brad(16px 16px 0 0);
+  height: min-content;
+
+  &:before {
+    display: none!important;
+  }
+  .sheet-modal-inner {
+    background-color: $secondary-light-shade
+  }
+  .toolbar {
+    .title {
+      font-weight:bold;
+      display:block;
+      color: #fff
+    }
+  }
 }
