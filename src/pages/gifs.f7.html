@@ -49,6 +49,24 @@
         <div class="right col-50"></div>
       </div>
     </div>
+    <!-- Sheet Modal Container -->
+    <div class="sheet-modal gif-options-sheet-modal">
+      <!-- Sheet Modal Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right">
+            <a href="#" class="link sheet-close">Done</a>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-modal-inner">
+        <!-- Sheet Modal content -->
+        <div class="block">
+          <p>Integer mollis nulla id nibh elementum finibus...</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -72,7 +90,12 @@
                         closeTimeout: 4000,
                     }).open()
                 })
-            })
+            }),
+            gifOptions (id) {
+                const myApp = this.$app;
+
+                myApp.sheet.open('.gif-options-sheet-modal', true)
+            }
         },
         on: {
             pageInit () {
@@ -144,6 +167,11 @@
                         }
                     });
                 }
+
+                // Gif options onclick
+                $$('#gifs').click('.link', function () {
+                    return component.gifOptions($$(this).prop("alt"))
+                })
             },
             ptrPullEnd () {
                 // Pull to refresh events for this page component

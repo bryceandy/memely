@@ -20,3 +20,8 @@
     }
   }
 }
+
+.gif-options-sheet-modal {
+  background-color: $secondary-light-shade;
+  @include brad(16px 16px 0 0)
+}
