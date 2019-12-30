@@ -104,99 +104,6 @@
                 activeGif: null
             }
         },
-        methods: {
-            fetchTrendingGifs: ( async (app) => {
-
-                return await app.request.promise({
-                    url: 'https://api.giphy.com/v1/gifs/trending?limit=100&api_key='+app.data.giphyApiKey,
-                    method: 'GET',
-                    dataType: 'json'
-                }).then( (result) => {
-                    return result.data.data
-                }).catch( (reason) => {
-                    return app.toast.create({
-                        text: 'Failed to load gifs '+reason.status,
-                        closeButton: true,
-                        closeButtonText: 'OK',
-                        closeButtonColor: 'red',
-                        closeTimeout: 4000,
-                    }).open()
-                })
-            }),
-            gifOptions (id) {
-                const myApp = this.$app;
-                // Gif will be known in the component
-                this.$setState({
-                    activeGif: id,
-                });
-
-                myApp.sheet.create({
-                    el: '.gif-options-sheet-modal',
-                    swipeToClose: true,
-                    backdrop: true
-                }).open(true)
-            },
-            copyGif (id) {
-                const myApp = this.$app;
-
-            },
-            shareGif (id) {
-                const myApp = this.$app, component = this;
-
-                myApp.actions.create({
-                    buttons: [
-                        [
-                            {
-                                text: 'Share',
-                                label: true
-                            },
-                            {
-                                text: 'Mail',
-                                onClick: function () {
-                                    myApp.dialog.alert('share mail')
-                                }
-                            },
-                            {
-                                text: 'Messages',
-                                onClick: function () {
-                                    myApp.dialog.alert('share messages')
-                                }
-                            },
-                            {
-                                text: 'Save gif',
-                                onClick: function () {
-                                    myApp.dialog.alert('share device')
-                                }
-                            }
-                        ],
-                        [
-                            {
-                                text: 'Social share',
-                                label: true
-                            },
-                            {
-                                text: 'Facebook',
-                                onClick: function () {
-                                    myApp.dialog.alert('share facebook')
-                                }
-                            },
-                            {
-                                text: 'Twitter',
-                                onClick: function () {
-                                    myApp.dialog.alert('share twitter')
-                                }
-                            }
-                        ],
-                        [
-                            {
-                                text: 'Cancel',
-                                color: 'red'
-                            }
-                        ]
-                    ],
-                }).open(true);
-            }
-        },
         on: {
             sheetClosed () {
                 this.$setState({
@@ -314,6 +221,99 @@
                     })
                 }
             }
-        }
+        },
+        methods: {
+            fetchTrendingGifs: ( async (app) => {
+
+                return await app.request.promise({
+                    url: 'https://api.giphy.com/v1/gifs/trending?limit=100&api_key='+app.data.giphyApiKey,
+                    method: 'GET',
+                    dataType: 'json'
+                }).then( (result) => {
+                    return result.data.data
+                }).catch( (reason) => {
+                    return app.toast.create({
+                        text: 'Failed to load gifs '+reason.status,
+                        closeButton: true,
+                        closeButtonText: 'OK',
+                        closeButtonColor: 'red',
+                        closeTimeout: 4000,
+                    }).open()
+                })
+            }),
+            gifOptions (id) {
+                const myApp = this.$app;
+                // Gif will be known in the component
+                this.$setState({
+                    activeGif: id,
+                });
+
+                myApp.sheet.create({
+                    el: '.gif-options-sheet-modal',
+                    swipeToClose: true,
+                    backdrop: true
+                }).open(true)
+            },
+            copyGif (id) {
+                const myApp = this.$app;
+
+            },
+            shareGif (id) {
+                const myApp = this.$app, component = this;
+
+                myApp.actions.create({
+                    buttons: [
+                        [
+                            {
+                                text: 'Share',
+                                label: true
+                            },
+                            {
+                                text: 'Mail',
+                                onClick: function () {
+                                    myApp.dialog.alert('share mail')
+                                }
+                            },
+                            {
+                                text: 'Messages',
+                                onClick: function () {
+                                    myApp.dialog.alert('share messages')
+                                }
+                            },
+                            {
+                                text: 'Save gif',
+                                onClick: function () {
+                                    myApp.dialog.alert('share device')
+                                }
+                            }
+                        ],
+                        [
+                            {
+                                text: 'Social share',
+                                label: true
+                            },
+                            {
+                                text: 'Facebook',
+                                onClick: function () {
+                                    myApp.dialog.alert('share facebook')
+                                }
+                            },
+                            {
+                                text: 'Twitter',
+                                onClick: function () {
+                                    myApp.dialog.alert('share twitter')
+                                }
+                            }
+                        ],
+                        [
+                            {
+                                text: 'Cancel',
+                                color: 'red'
+                            }
+                        ]
+                    ],
+                }).open(true);
+            }
+        },
     }
 </script>
