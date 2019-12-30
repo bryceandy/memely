@@ -27,7 +27,7 @@
 }
 .gif-options-sheet-modal {
   @include brad(16px 16px 0 0);
-  height: min-content;
+  height: max-content;
 
   &:before {
     display: none!important;

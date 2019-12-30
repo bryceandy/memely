@@ -48,49 +48,49 @@
         <div class="left col-50"></div>
         <div class="right col-50"></div>
       </div>
-    </div>
-    <!-- Sheet Modal Container -->
-    <div class="sheet-modal gif-options-sheet-modal">
-      <!-- Sheet Modal Toolbar -->
-      <div class="toolbar">
-        <div class="toolbar-inner">
-          <div class="left"></div>
-          <div class="title text-align-center">
-            Gif Options
+      <!-- Sheet Modal Container -->
+      <div class="sheet-modal gif-options-sheet-modal">
+        <!-- Sheet Modal Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <div class="left"></div>
+            <div class="title text-align-center">
+              Gif Options
+            </div>
+            <div class="right"></div>
           </div>
-          <div class="right"></div>
         </div>
-      </div>
-      <div class="sheet-modal-inner">
-        <!-- Sheet Modal content -->
-        <div class="block" style="margin: 8px 0">
-          <div class="list no-hairlines no-hairlines-between" style="margin:0">
-            <ul>
-              <li class="item-content link sheet-close" @click="copyGif('{{activeGif}}')">
-                <div class="item-media">
-                  <i class="icon f7-icons">link</i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">
-                    Copy gif link
+        <div class="sheet-modal-inner">
+          <!-- Sheet Modal content -->
+          <div class="block" style="margin: 8px 0">
+            <div class="list no-hairlines no-hairlines-between" style="margin:0">
+              <ul>
+                <li class="item-content link sheet-close" @click="copyGif('{{activeGif}}')">
+                  <div class="item-media">
+                    <i class="icon f7-icons">link</i>
                   </div>
-                </div>
-              </li>
-              <li class="item-content link sheet-close" @click="shareGif('{{activeGif}}')">
-                <div class="item-media">
-                  <i class="icon f7-icons">arrow_turn_up_right</i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">
-                    Share gif on
+                  <div class="item-inner">
+                    <div class="item-title">
+                      Copy gif link
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+                <li class="item-content link sheet-close" @click="shareGif('{{activeGif}}')">
+                  <div class="item-media">
+                    <i class="icon f7-icons">arrow_turn_up_right</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title">
+                      Share gif on
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <button class="button button-fill button-large button-round sheet-close">
+              Cancel
+            </button>
           </div>
-          <button class="button button-fill button-large button-round sheet-close">
-            Cancel
-          </button>
         </div>
       </div>
     </div>
@@ -181,8 +181,8 @@
                 }
 
                 // Gif options onclick
-                $$('.gifs-page-content').click('img', function () {
-                    return component.gifOptions($$(this).prop("alt"))
+                $$('.gifs-page-content').click('.elevation-2', function () {
+                    return component.gifOptions($$(this).attr("alt"))
                 })
             },
             ptrPullEnd () {
@@ -206,7 +206,7 @@
                     // Check for a new gif that is not loaded and prepend it
                     let loadedIds = [];
                     $$('#gifs .loaded-image').forEach( (element) => {
-                        loadedIds.push($$(element).prop("alt"))
+                        loadedIds.push($$(element).attr("alt"))
                     });
 
                     gifs.forEach( (gif, index) => {
