@@ -56,7 +56,7 @@
     export default {
         on: {
             pageInit () {
-                const myApp = this.$app, $$ = this.$$, router = this.$router;
+                const myApp = this.$app, $$ = this.$$;
 
                 // Create searchbar
                 myApp.searchbar.create({
@@ -79,10 +79,10 @@
 
                                     data.data.forEach(function (gif, index) {
                                         if (index % 2 === 0) {
-                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                                         }
                                         else {
-                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                                         }
                                     })
                                 },
@@ -113,10 +113,10 @@
                     success(data, status, xhr) {
                         data.data.forEach(function (gif, index) {
                             if (index % 2 === 0) {
-                                $$('#gifs .left').append(`<img class="elevation-2 left-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .left').append(`<img class="elevation-2 left-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                             else {
-                                $$('#gifs .right').append(`<img class="elevation-2 right-image" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .right').append(`<img class="elevation-2 right-image link" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                         })
                     },
@@ -129,12 +129,12 @@
                             closeTimeout: 4000,
                         }).open()
                     }
-                });
-
-                // Pull to refresh
-                $$('.gifs-page-content').on('ptr:pullend', function () {
-                    setTimeout(() => router.refreshPage(), 1000)
                 })
+            },
+            ptrPullEnd () {
+                // Pull to refresh event
+                const router = this.$router;
+                setTimeout(() => router.refreshPage(), 1000)
             }
         }
     }
