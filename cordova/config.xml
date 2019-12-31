@@ -28,6 +28,14 @@
         <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
             <string>Requires photo library access to add media</string>
         </edit-config>
+        <config-file platform="ios" target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>whatsapp</string>
+                <string>facebook</string>
+                <string>instagram</string>
+                <string>twitter</string>
+            </array>
+        </config-file>
     </platform>
 
     <allow-navigation href="*" />
