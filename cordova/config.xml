@@ -31,9 +31,8 @@
         <config-file platform="ios" target="*-Info.plist" parent="LSApplicationQueriesSchemes">
             <array>
                 <string>whatsapp</string>
-                <string>facebook</string>
+                <string>fb</string>
                 <string>instagram</string>
-                <string>twitter</string>
             </array>
         </config-file>
     </platform>
