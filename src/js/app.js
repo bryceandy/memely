@@ -99,7 +99,27 @@ var app = new Framework7({
           else if ( app.device.ios ) {
             const filePath = fileEntry.toURL();
 
-            window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
+            // Check if it is a video or image
+            if (fileName.indexOf(".mp4") || fileName.indexOf(".mov")) {
+              alert(filePath);
+              return cordova.plugins.saveVideoToGallery(filePath, function () {
+                app.toast.create({
+                  icon: '<i class="f7-icons">checkmark_alt</i>',
+                  text: 'Saved!',
+                  position: 'center',
+                  closeTimeout: 4000,
+                }).open();
+                // Delete from tmp
+                return fileEntry.remove()
+              }, function (err) {
+                app.toast.create({
+                  text: err,
+                  position: 'center',
+                }).open();
+                //
+              })
+            }
+            return window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
               app.toast.create({
                 icon: '<i class="f7-icons">checkmark_alt</i>',
                 text: 'Saved!',
@@ -123,12 +143,10 @@ var app = new Framework7({
                   }).open();
                   // Delete from tmp
                   return fileEntry.remove()
-                }, function () {
+                }, function (err) {
                   app.toast.create({
-                    icon: '<i class="f7-icons">multiply</i>',
-                    text: 'An error occured!',
+                    text: err,
                     position: 'center',
-                    closeTimeout: 4000,
                   }).open();
                   //
                 })
