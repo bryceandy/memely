@@ -67,44 +67,74 @@ var app = new Framework7({
   },
   // App root methods
   methods: {
-    saveToCameraRoll (fileName) {
+    saveToGallery (fileName) {
       // Fetch the file
-      let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+      let fileDirectory = cordova.file.cacheDirectory;
       if (app.device.ios) fileDirectory = cordova.file.tempDirectory;
 
       window.resolveLocalFileSystemURL(fileDirectory, function (dir) {
 
         dir.getFile(fileName, { create: false }, function (fileEntry) {
 
-          //const filePath = fileEntry.toURL();
+          if ( app.device.android ) {
+            var permissions = cordova.plugins.permissions;
+            permissions.hasPermission(permissions.WRITE_EXTERNAL_STORAGE, function( status ){
 
-          window.resolveLocalFileSystemURL(cordova.file.documentsDirectory,
-              function (dirEntry) {
-              fileEntry.moveTo(dirEntry, fileName, function () {
-                app.toast.create({
-                  icon: '<i class="f7-icons">checkmark_alt</i>',
-                  text: 'Saved!',
-                  position: 'center',
-                  closeTimeout: 4000,
-                }).open();
-                // Delete from tmp
-                return fileEntry.remove()
-              }, function () {})
-            },
-            function (error) {
-              navigator.notification.alert('Error: '+JSON.stringify(error), null, 'OffisyRec', 'OK')
+              if ( status.hasPermission ) {
+                return storeForAndroid()
+              }
+              return permissions.requestPermission(permissions.WRITE_EXTERNAL_STORAGE, storeForAndroid,
+                //otherwise
+                function () {
+                  app.toast.create({
+                    text: 'Storage access denied!',
+                    closeButton: true,
+                    closeButtonText: 'OK',
+                    closeButtonColor: 'red'
+                  }).open();
+                }
+              );
             });
+          }
+          else if ( app.device.ios ) {
+            const filePath = fileEntry.toURL();
 
-          /*window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
-            app.toast.create({
-              icon: '<i class="f7-icons">checkmark_alt</i>',
-              text: 'Saved!',
-              position: 'center',
-              closeTimeout: 4000,
-            }).open();
-            // Delete from tmp
-            return fileEntry.remove()
-          })*/
+            window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
+              app.toast.create({
+                icon: '<i class="f7-icons">checkmark_alt</i>',
+                text: 'Saved!',
+                position: 'center',
+                closeTimeout: 4000,
+              }).open();
+              // Delete from tmp
+              return fileEntry.remove()
+            })
+          }
+
+          function storeForAndroid () {
+            window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory,
+              function (dirEntry) {
+                fileEntry.moveTo(dirEntry, fileName, function () {
+                  app.toast.create({
+                    icon: '<i class="f7-icons">checkmark_alt</i>',
+                    text: 'Saved!',
+                    position: 'center',
+                    closeTimeout: 4000,
+                  }).open();
+                  // Delete from tmp
+                  return fileEntry.remove()
+                }, function () {
+                  app.toast.create({
+                    icon: '<i class="f7-icons">multiply</i>',
+                    text: 'An error occured!',
+                    position: 'center',
+                    closeTimeout: 4000,
+                  }).open();
+                  //
+                })
+              },
+            function (error) {});
+          }
         },
           function () {
             app.toast.create({
@@ -115,7 +145,7 @@ var app = new Framework7({
               closeTimeout: 4000,
             }).open()
         })
-      })
+      });
     },
   }
 });

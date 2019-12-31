@@ -63,7 +63,7 @@
         methods: {
             discardImage (fileName) {
                 // Fetch the file
-                let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+                let fileDirectory = cordova.file.cacheDirectory;
                 const myApp = this.$app;
 
                 if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
@@ -102,7 +102,7 @@
             shareMeme (fileName) {
                 const myApp = this.$app;
 
-                myApp.methods.saveToCameraRoll(fileName);
+                myApp.methods.saveToGallery(fileName);
                 myApp.views.current.router.back()
             },
             downloadImage (font, font_size, meme, top, bottom) {
@@ -150,7 +150,7 @@
                 function saveAndRead(blob) {
 
                     const fileName = new Date().getTime()+'.jpeg';
-                    let fileDirectory = cordova.file.externalApplicationStorageDirectory;
+                    let fileDirectory = cordova.file.cacheDirectory;
 
                     if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
 

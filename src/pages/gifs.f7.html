@@ -364,8 +364,7 @@
                 const fileName = new Date().getTime()+'.mp4';
                 const myApp = this.$app;
 
-                let fileDirectory = cordova.file.externalApplicationStorageDirectory;
-
+                let fileDirectory = cordova.file.cacheDirectory;
                 if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
 
                 window.resolveLocalFileSystemURL( fileDirectory, function (dir) {
@@ -381,7 +380,7 @@
                                     myApp.preloader.hide();
 
                                     // Save to iPhone camera roll
-                                    return myApp.methods.saveToCameraRoll(fileName)
+                                    return myApp.methods.saveToGallery(fileName)
                                 };
 
                                 fileWriter.onerror = function(er) {
