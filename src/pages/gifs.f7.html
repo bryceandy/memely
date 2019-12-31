@@ -23,7 +23,7 @@
           </div>
         </form>
         <div class="title sliding">
-          <img src="static/memely.svg" alt="logo" class="title-logo">
+          <img src="static/memely.svg" alt="App logo" class="title-logo">
         </div>
         <div class="title-large">
           <div class="title-large-text">
@@ -135,10 +135,10 @@
 
                                     data.data.forEach(function (gif, index) {
                                         if (index % 2 === 0) {
-                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                                         }
                                         else {
-                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                                         }
                                     })
                                 },
@@ -174,16 +174,16 @@
 
                     gifs.forEach(function (gif, index) {
                         if (index % 2 === 0) {
-                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                         } else {
-                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                         }
                     });
                 }
 
                 // Gif options onclick
                 $$('.gifs-page-content').click('.elevation-2', function () {
-                    return component.gifOptions($$(this).attr("alt"))
+                    return component.gifOptions($$(this).data("id"))
                 })
             },
             ptrPullEnd () {
@@ -207,16 +207,16 @@
                     // Check for a new gif that is not loaded and prepend it
                     let loadedIds = [];
                     $$('#gifs .loaded-image').forEach( (element) => {
-                        loadedIds.push($$(element).attr("alt"))
+                        loadedIds.push($$(element).data("id"))
                     });
 
                     gifs.forEach( (gif, index) => {
                         if (! loadedIds.includes(gif.id)) {
                             if (index % 2 === 0) {
-                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                             }
                             else {
-                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                             }
                         }
                     })
@@ -260,7 +260,7 @@
                 const $$ = this.$$;
                 const myApp = this.$app;
                 // Get url from data-url attribute
-                const gifUrl = $$('.gifs-page-content').find('img[alt="'+id+'"]').data("url");
+                const gifUrl = $$('.gifs-page-content').find('img[data-id="'+id+'"]').data("url");
 
                 cordova.plugins.clipboard.copy(gifUrl, function () {
                     myApp.toast.create({
@@ -307,7 +307,7 @@
             },
             mailGif (id) {
                 const myApp = this.$app;
-                const gifUrl = this.$$('.gifs-page-content').find('img[alt="'+id+'"]').data("preview");
+                const gifUrl = this.$$('.gifs-page-content').find('img[data-id="'+id+'"]').data("preview");
 
                 myApp.preloader.show('orange');
 
@@ -340,7 +340,7 @@
                 myApp.preloader.show('orange');
 
                 // Get download url from data-url attribute
-                const gifUrl = $$('.gifs-page-content').find('img[alt="'+id+'"]').data("url");
+                const gifUrl = $$('.gifs-page-content').find('img[data-id="'+id+'"]').data("url");
 
                 // Using xmlhttp we can obtain a blob
                 let oReq = new XMLHttpRequest();
