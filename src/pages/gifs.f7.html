@@ -40,6 +40,7 @@
         <div class="preloader"></div>
         <div class="ptr-arrow"></div>
       </div>
+
       <div id="gifs" class="margin-top-half row searchbar-hide-on-search">
         <div class="left col-50"></div>
         <div class="right col-50"></div>
@@ -297,24 +298,6 @@
                         ],
                         [
                             {
-                                text: 'Social share',
-                                label: true
-                            },
-                            {
-                                text: 'Facebook',
-                                onClick: function () {
-                                    myApp.dialog.alert('share facebook')
-                                }
-                            },
-                            {
-                                text: 'Twitter',
-                                onClick: function () {
-                                    myApp.dialog.alert('share twitter')
-                                }
-                            }
-                        ],
-                        [
-                            {
                                 text: 'Cancel',
                                 color: 'red'
                             }
@@ -327,17 +310,27 @@
                 const gifUrl = this.$$('.gifs-page-content').find('img[alt="'+id+'"]').data("preview");
 
                 myApp.preloader.show('orange');
-                window.plugins.socialsharing.shareViaEmail(
-                    'Message',
-                    'Subject',
-                    ['to@person1.com', 'to@person2.com'], // TO: must be null or an array
-                    null, // CC: must be null or an array
-                    null, // BCC: must be null or an array
-                    [gifUrl], // FILES: can be null, a string, or an array
-                    function () { myApp.preloader.hide() }, // Ignore success cb
-                    function () { myApp.preloader.hide() }, // Ignore error cb
-                );
 
+                return window.plugins.socialsharing.canShareViaEmail(function(){
+                    window.plugins.socialsharing.shareViaEmail(
+                        'Message',
+                        'Subject',
+                        ['to@person1.com', 'to@person2.com'], // TO: must be null or an array
+                        null, // CC: must be null or an array
+                        null, // BCC: must be null or an array
+                        [gifUrl], // FILES: can be null, a string, or an array
+                        function () { myApp.preloader.hide() }, // Ignore success cb
+                        function () { myApp.preloader.hide() }, // Ignore error cb
+                    );
+                }, function(){
+                    myApp.preloader.hide()
+                    myApp.toast.create({
+                        text: 'Email is not available',
+                        closeButton: true,
+                        closeButtonText: 'OK',
+                        closeButtonColor: 'red',
+                    }).open()
+                })
             },
             saveGif (id) {
                 const component = this;
