@@ -134,10 +134,10 @@
 
                                     data.data.forEach(function (gif, index) {
                                         if (index % 2 === 0) {
-                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .left').append(`<img class="elevation-2 left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                                         }
                                         else {
-                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                            $$('#gif-search-results .right').append(`<img class="elevation-2 right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                                         }
                                     })
                                 },
@@ -173,9 +173,9 @@
 
                     gifs.forEach(function (gif, index) {
                         if (index % 2 === 0) {
-                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            $$('#gifs .left').append(`<img class="elevation-2 loaded-image left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                         } else {
-                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                            $$('#gifs .right').append(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                         }
                     });
                 }
@@ -212,10 +212,10 @@
                     gifs.forEach( (gif, index) => {
                         if (! loadedIds.includes(gif.id)) {
                             if (index % 2 === 0) {
-                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .left').prepend(`<img class="elevation-2 loaded-image left-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                             else {
-                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
+                                $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="` + gif.id + `"/>`)
                             }
                         }
                     })
@@ -284,13 +284,7 @@
                             {
                                 text: 'Mail',
                                 onClick: function () {
-                                    myApp.dialog.alert('share mail')
-                                }
-                            },
-                            {
-                                text: 'Messages',
-                                onClick: function () {
-                                    myApp.dialog.alert('share messages')
+                                    component.mailGif(id)
                                 }
                             },
                             {
@@ -326,6 +320,20 @@
                         ]
                     ],
                 }).open(true);
+            },
+            mailGif (id) {
+                const gifUrl = $$('.gifs-page-content').find('img[alt="'+id+'"]').data("preview");
+
+                window.plugins.socialsharing.shareViaEmail(
+                    'Message',
+                    'Subject',
+                    ['to@person1.com', 'to@person2.com'], // TO: must be null or an array
+                    null, // CC: must be null or an array
+                    null, // BCC: must be null or an array
+                    [gifUrl], // FILES: can be null, a string, or an array
+                    function () {}, // Ignore success cb
+                    function () {}, // Ignore error cb
+                );
             },
             saveGif (id) {
                 const component = this;
