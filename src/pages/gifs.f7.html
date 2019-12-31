@@ -322,8 +322,10 @@
                 }).open(true);
             },
             mailGif (id) {
-                const gifUrl = $$('.gifs-page-content').find('img[alt="'+id+'"]').data("preview");
+                const myApp = this.$app;
+                const gifUrl = this.$$('.gifs-page-content').find('img[alt="'+id+'"]').data("preview");
 
+                myApp.preloader.show('orange');
                 window.plugins.socialsharing.shareViaEmail(
                     'Message',
                     'Subject',
@@ -331,9 +333,10 @@
                     null, // CC: must be null or an array
                     null, // BCC: must be null or an array
                     [gifUrl], // FILES: can be null, a string, or an array
-                    function () {}, // Ignore success cb
-                    function () {}, // Ignore error cb
+                    function () { myApp.preloader.hide() }, // Ignore success cb
+                    function () { myApp.preloader.hide() }, // Ignore error cb
                 );
+
             },
             saveGif (id) {
                 const component = this;
