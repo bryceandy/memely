@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b070ed90-5318-4ffb-9cba-eeca5eb18469" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cordova/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/gifs.f7.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/gifs.f7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cordova/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cordova/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +66,7 @@
       <updated>1577058665410</updated>
       <workItem from="1577058667070" duration="156933000" />
       <workItem from="1577715688714" duration="16798000" />
-      <workItem from="1546307896022" duration="1572000" />
+      <workItem from="1546307896022" duration="2839000" />
     </task>
     <servers />
   </component>

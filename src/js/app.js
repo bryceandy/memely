@@ -76,9 +76,26 @@ var app = new Framework7({
 
         dir.getFile(fileName, { create: false }, function (fileEntry) {
 
-          const filePath = fileEntry.toURL();
+          //const filePath = fileEntry.toURL();
 
-          window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
+          window.resolveLocalFileSystemURL(cordova.file.documentsDirectory,
+              function (dirEntry) {
+              fileEntry.moveTo(dirEntry, fileName, function () {
+                app.toast.create({
+                  icon: '<i class="f7-icons">checkmark_alt</i>',
+                  text: 'Saved!',
+                  position: 'center',
+                  closeTimeout: 4000,
+                }).open();
+                // Delete from tmp
+                return fileEntry.remove()
+              }, function () {})
+            },
+            function (error) {
+              navigator.notification.alert('Error: '+JSON.stringify(error), null, 'OffisyRec', 'OK')
+            });
+
+          /*window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
             app.toast.create({
               icon: '<i class="f7-icons">checkmark_alt</i>',
               text: 'Saved!',
@@ -87,7 +104,7 @@ var app = new Framework7({
             }).open();
             // Delete from tmp
             return fileEntry.remove()
-          })
+          })*/
         },
           function () {
             app.toast.create({
