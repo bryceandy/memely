@@ -15,6 +15,7 @@
   "dependencies": {
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
+    "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-splashscreen": "^5.0.3",
@@ -36,7 +37,8 @@
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
         "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
-      }
+      },
+      "cordova-plugin-add-swift-support": {}
     },
     "platforms": [
       "ios",
