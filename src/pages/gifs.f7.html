@@ -283,8 +283,9 @@
                             },
                             {
                                 text: 'Mail',
-                                onClick: function () {
-                                    component.mailGif(id)
+                                onClick: function (actions, e) {
+                                    setTimeout(() => actions.close(), 0);
+                                    return component.mailGif(id)
                                 }
                             },
                             {
