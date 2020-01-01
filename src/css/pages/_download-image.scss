@@ -44,4 +44,9 @@
       color: #fff
     }
   }
+  .input-dropdown-wrap, .input-dropdown {
+    &:before {
+      border-top: 5px solid #ffffff
+    }
+  }
 }
