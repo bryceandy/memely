@@ -26,6 +26,9 @@
           {{removeHyphens this.$route.params.name}}
         </div>
       </div>
+      <!--The resulting image will be displayed here-->
+      <div id="response" class="block">
+      </div>
       <div class="row margin-top">
         {{#if downloaded}}
           <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
@@ -47,8 +50,6 @@
         {{/if}}
       </div>
 
-      <div id="response" class="block">
-      </div>
       <!-- Sheet Modal Container -->
       <div class="sheet-modal edit-image-sheet-modal">
         <!-- Sheet Modal Toolbar -->
