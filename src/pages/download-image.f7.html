@@ -135,6 +135,12 @@
                 this.$setState({
                     myFile: fileName
                 });
+
+                this.$app.sheet.create({
+                    el: '.edit-image-sheet-modal',
+                    swipeToClose: true,
+                    backdrop: true
+                }).open(true)
             },
             shareMeme (fileName) {
                 const myApp = this.$app;
