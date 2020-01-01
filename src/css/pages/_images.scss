@@ -4,16 +4,6 @@
   .block, .list {
     margin: 10px 0
   }
-  .user-action-row {
-    .link {
-      @include brad(8px);
-
-      .icon {
-        font-size: 4vh;
-        margin-right: 5px
-      }
-    }
-  }
   .item-title {
     color: $secondary-color
   }
