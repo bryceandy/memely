@@ -177,8 +177,12 @@
                 this.discardImage(false);
 
                 // Then download the new meme and display it
-                return this.downloadImage(formData.font, formData.font_size, this.$route.params.name,
-                formData.top, formData.bottom)
+                this.downloadImage(formData.font, formData.font_size, this.$route.params.name,
+                formData.top, formData.bottom);
+
+                this.$setState({
+                    edited: true
+                })
             },
             updateEdit () {
                 //
