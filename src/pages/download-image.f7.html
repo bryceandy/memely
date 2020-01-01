@@ -37,11 +37,15 @@
           </button>
         {{/if}}
         {{#if edited}}
-        <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
-          Discard
+        <button class="button button-raised button-round button-large margin-right col-45 sheet-open"
+          data-sheet="edit-image-sheet-modal" @click="updateEdit('{{myFile}}')">
+          Re-edit
         </button>
-        <button class="button button-raised button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
+        <button class="button button-fill button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
           Share
+        </button>
+        <button class="button button-outline button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
+          Discard
         </button>
         {{/if}}
       </div>
@@ -68,9 +72,9 @@
                 <li>
                   <div class="item-content item-input">
                     <div class="item-inner">
-                      <div class="item-title item-label">Name</div>
+                      <div class="item-title item-label">Top</div>
                       <div class="item-input-wrap">
-                        <input type="text" placeholder="Your name"/>
+                        <input type="text" placeholder="TOP TEXT"/>
                       </div>
                     </div>
                   </div>
@@ -78,18 +82,25 @@
                 <li>
                   <div class="item-content item-input">
                     <div class="item-inner">
-                      <div class="item-title item-label">E-mail</div>
+                      <div class="item-title item-label">Bottom</div>
                       <div class="item-input-wrap">
-                        <input type="email" placeholder="E-mail"/>
+                        <input type="text" placeholder="BOTTOM TEXT"/>
                       </div>
                     </div>
                   </div>
                 </li>
+                // Range of font size
+                // Select values for font family
               </ul>
             </div>
-            <button class="button button-fill button-large button-round sheet-close">
-              Cancel
-            </button>
+            <div class="row">
+              <button class="button button-fill button-large button-round sheet-close color-red">
+                Cancel
+              </button>
+              <button class="button button-fill button-large button-round sheet-close color-green">
+                Update
+              </button>
+            </div>
           </div>
         </div>
       </div>
