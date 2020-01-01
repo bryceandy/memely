@@ -4,6 +4,12 @@
     <div class="navbar navbar-large">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
+        <div class="left">
+          {{> "menu-link"}}
+        </div>
+        <div class="title sliding">
+          <img src="static/memely.svg" alt="App logo" class="title-logo">
+        </div>
         <div class="right">
           <!-- Link to enable searchbar -->
           <a class="link icon-only searchbar-enable" data-searchbar=".gifs-searchbar">
@@ -22,9 +28,6 @@
             <span class="searchbar-disable-button">Cancel</span>
           </div>
         </form>
-        <div class="title sliding">
-          <img src="static/memely.svg" alt="App logo" class="title-logo">
-        </div>
         <div class="title-large">
           <div class="title-large-text">
             trending gifs
