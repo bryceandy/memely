@@ -31,20 +31,20 @@
       </div>
       <div class="row margin-top">
         {{#if downloaded}}
-          <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
+          <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage">
             Discard
           </button>
           <button class="button button-fill button-round button-large margin-right col-45 sheet-open"
-            data-sheet="edit-image-sheet-modal" @click="editImage('{{myFile}}')">
+            data-sheet="edit-image-sheet-modal" @click="editImage">
             Edit
           </button>
         {{/if}}
         {{#if edited}}
         <button class="button button-raised button-round button-large margin-right col-45 sheet-open"
-          data-sheet="edit-image-sheet-modal" @click="updateEdit('{{myFile}}')">
+          data-sheet="edit-image-sheet-modal" @click="updateEdit">
           Re-edit
         </button>
-        <button class="button button-fill button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
+        <button class="button button-fill button-round button-large margin-right col-45" @click="shareMeme">
           Share
         </button>
         {{/if}}
@@ -115,7 +115,7 @@
               </ul>
             </form>
             <div class="row margin-top">
-              <button class="col-45 margin-left button button-outline button-large button-round sheet-close color-gray">
+              <button @click="submitEdit" class="col-45 margin-left button button-outline button-large button-round sheet-close color-gray">
                 Cancel
               </button>
               <button class=" col-45 margin-right button button-outline button-large button-round sheet-close color-green">
@@ -138,10 +138,11 @@
             }
         },
         methods: {
-            discardImage (fileName) {
+            discardImage () {
                 // Fetch the file
                 let fileDirectory = cordova.file.cacheDirectory;
                 const myApp = this.$app;
+                const fileName = this.myFile;
 
                 if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
 
@@ -163,23 +164,27 @@
                     })
                 })
             },
-            editImage (fileName) {
-                // Change state
-                this.$setState({
-                    myFile: fileName
-                });
-
+            editImage () {
                 this.$app.sheet.create({
                     el: '.edit-image-sheet-modal',
                     swipeToClose: true,
                     backdrop: true
                 }).open(true)
             },
-            updateEdit (fileName) {
+            submitEdit () {
+                const myApp = this.$app;
+                const fileName = this.myFile;
+                const $$ = this.$$;
+
+                let formData = myApp.form.convertToData('#editImageForm');
+                alert(JSON.stringify(formData))
+            },
+            updateEdit () {
                 //
             },
-            shareMeme (fileName) {
+            shareMeme () {
                 const myApp = this.$app;
+                const fileName = this.myFile;
 
                 myApp.methods.saveToGallery(fileName);
                 myApp.views.current.router.back()
