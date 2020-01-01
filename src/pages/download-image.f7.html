@@ -65,7 +65,7 @@
         <div class="sheet-modal-inner">
           <!-- Sheet Modal content -->
           <div class="block" style="margin: 8px 0">
-            <form class="list inline-label no-hairline-top no-hairline-bottom no-hairlines-md" style="margin:0" id="editImageForm">
+            <form class="list inline-label no-hairline-top no-hairlines-md" style="margin:0" id="editImageForm">
               <ul>
                 <li>
                   <div class="item-content item-input">
@@ -284,6 +284,7 @@
             pageInit () {
                 const meme = this.$route.params.name;
 
+                //setTimeout(() => this.editImage('bryce'), 2000)
                 this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
             }
         }
