@@ -189,7 +189,7 @@
                     return component.gifOptions($$(this).data("id"))
                 })
             },
-            ptrPullEnd () {
+            ptrRefresh () {
                 // Pull to refresh events for this page component
                 const component = this, $$ = component.$$;
                 const output = new Promise( resolve => resolve(
@@ -201,11 +201,6 @@
                 async function promiseResult() {
                     // Assign the data result to a variable
                     let gifs = await output;
-
-                    // Stop the ptr from loading
-                    setTimeout(() => {
-                        component.$app.ptr.done('.gifs-page-content')
-                    }, 1000);
 
                     // Check for a new gif that is not loaded and prepend it
                     let loadedIds = [];
@@ -222,7 +217,8 @@
                                 $$('#gifs .right').prepend(`<img class="elevation-2 loaded-image right-image link" data-preview="` + gif.images.original.url + `" data-url="` + gif.images.original_mp4.mp4 + `" src="` + gif.images.fixed_width_downsampled.url + `" alt="`+gif.title+`" data-id="` + gif.id + `"/>`)
                             }
                         }
-                    })
+                    });
+                    component.$app.ptr.done('.gifs-page-content')
                 }
             }
         },
