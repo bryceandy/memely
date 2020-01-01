@@ -33,7 +33,7 @@ var routes = [
       // Request
       app.request({
         url: app.data.requestingDomain+'images',
-        method: 'Get',
+        method: 'GET',
         headers: {
           "x-rapidapi-host": app.data.XRapidAPIHost,
           "x-rapidapi-key": app.data.XRapidAPIKey
@@ -73,12 +73,12 @@ var routes = [
       // Request
       app.request({
         url: app.data.requestingDomain+'fonts',
-        method: 'Get',
+        method: 'GET',
+        dataType: 'json',
         headers: {
           "x-rapidapi-host": app.data.XRapidAPIHost,
           "x-rapidapi-key": app.data.XRapidAPIKey
         },
-        dataType: 'json',
         success(data, status, xhr) {
 
           setTimeout(() => {
