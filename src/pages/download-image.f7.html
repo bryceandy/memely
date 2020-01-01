@@ -31,7 +31,8 @@
           <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
             Discard
           </button>
-          <button class="button button-fill button-round button-large margin-right col-45" @click="editImage('{{myFile}}')">
+          <button class="button button-fill button-round button-large margin-right col-45 sheet-open"
+            data-sheet="edit-image-sheet-modal" @click="editImage('{{myFile}}')">
             Edit
           </button>
           <!--<button class="button button-raised button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
@@ -42,12 +43,51 @@
 
       <div id="response" class="block">
       </div>
-      <!--Image editing form-->
-      {{#if editing}}
-        <form class="margin-top">
-
-        </form>
-      {{/if}}
+      <!-- Sheet Modal Container -->
+      <div class="sheet-modal edit-image-sheet-modal">
+        <!-- Sheet Modal Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <div class="left"></div>
+            <div class="title text-align-center">
+              Edit Options
+            </div>
+            <div class="right"></div>
+          </div>
+        </div>
+        <div class="sheet-modal-inner">
+          <!-- Sheet Modal content -->
+          <div class="block" style="margin: 8px 0">
+            <div class="list no-hairlines-md" style="margin:0">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Name</div>
+                      <div class="item-input-wrap">
+                        <input type="text" placeholder="Your name"/>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">E-mail</div>
+                      <div class="item-input-wrap">
+                        <input type="email" placeholder="E-mail"/>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <button class="button button-fill button-large button-round sheet-close">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,8 +96,7 @@
         data: function () {
             return {
                 downloaded: false,
-                myFile: null,
-                editing: false
+                myFile: null
             }
         },
         methods: {
@@ -94,9 +133,7 @@
             editImage (fileName) {
                 // Change state
                 this.$setState({
-                    downloaded: false,
-                    myFile: fileName,
-                    editing: true
+                    myFile: fileName
                 });
             },
             shareMeme (fileName) {
@@ -204,7 +241,6 @@
         on: {
             pageInit () {
                 const meme = this.$route.params.name;
-
                 this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
             }
         }

@@ -13,3 +13,35 @@
     }
   }
 }
+
+.edit-image-sheet-modal .toolbar, .edit-image-sheet-modal .toolbar-inner {
+  background-color: lighten($secondary-light-shade, 5%);
+  @include brad(16px 16px 0 0)
+}
+.edit-image-sheet-modal {
+  @include brad(16px 16px 0 0);
+  height: auto;
+
+  &:before {
+    display: none!important;
+  }
+  .sheet-modal-inner, .sheet-modal-inner .list, .sheet-modal-inner .list ul {
+    background-color: $secondary-light-shade;
+    color: #fff
+  }
+  .sheet-modal-inner .list ul {
+    .item-content {
+      margin-bottom: 2%;
+      .item-title {
+        font-size: larger
+      }
+    }
+  }
+  .toolbar {
+    .title {
+      font-weight:bold;
+      display:block;
+      color: #fff
+    }
+  }
+}
