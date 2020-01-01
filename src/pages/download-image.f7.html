@@ -5,7 +5,7 @@
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="left">
-          <a href="#" class="link back">
+          <a href="#" class="link back" @click="discardImage('{{myFile}}')">
             <i class="icon icon-back"></i>
             <span class="if-not-md">Back</span>
           </a>
@@ -35,9 +35,14 @@
             data-sheet="edit-image-sheet-modal" @click="editImage('{{myFile}}')">
             Edit
           </button>
-          <!--<button class="button button-raised button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
-            Share
-          </button>-->
+        {{/if}}
+        {{#if edited}}
+        <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
+          Discard
+        </button>
+        <button class="button button-raised button-round button-large margin-right col-45" @click="shareMeme('{{myFile}}')">
+          Share
+        </button>
         {{/if}}
       </div>
 
@@ -96,7 +101,8 @@
         data: function () {
             return {
                 downloaded: false,
-                myFile: null
+                myFile: null,
+                edited: false
             }
         },
         methods: {
@@ -111,13 +117,8 @@
                     dir.getFile(fileName, { create: false }, function (fileEntry) {
                         // Delete
                         fileEntry.remove( function () {
-                            myApp.views.current.router.back();
-                            myApp.toast.create({
-                                icon: '<i class="f7-icons">checkmark_alt</i>',
-                                text: 'Discarded!',
-                                position: 'center',
-                                closeTimeout: 4000,
-                            }).open();
+                            if (myApp.views.current.router.currentRoute.name === 'download-image')
+                                myApp.views.current.router.back()
                         })
                     }, function () {
                         myApp.toast.create({
