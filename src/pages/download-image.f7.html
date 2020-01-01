@@ -27,10 +27,6 @@
     <!-- Scrollable page content-->
     <div class="page-content download-image-page-content">
       <div class="row margin-top">
-        <button class="button button-fill button-round button-large margin-right col-45 sheet-open"
-          data-sheet="edit-image-sheet-modal" @click="editImage('bryce')">
-          Edit
-        </button>
         {{#if downloaded}}
           <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
             Discard
@@ -286,7 +282,7 @@
         on: {
             pageInit () {
                 const meme = this.$route.params.name;
-                //this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
+                this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
             }
         }
     }
