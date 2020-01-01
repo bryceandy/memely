@@ -16,7 +16,7 @@ import Template7 from "template7";
 
 // Register helpers
 Template7.registerHelper('removeHyphens', (val) => {
-  return val.replace("-", " ");
+  return val.split("-").join(" ");
 });
 
 // Partial templates to be used anywhere
