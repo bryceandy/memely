@@ -22,7 +22,7 @@
     <!-- Scrollable page content-->
     <div class="page-content download-image-page-content">
       <div class="block">
-        <div class="block-title-medium">
+        <div class="block-title-medium text-color-gray">
           {{removeHyphens this.$route.params.name}}
         </div>
       </div>
@@ -114,7 +114,7 @@
                 </li>
               </ul>
             </form>
-            <div class="row">
+            <div class="row margin-top-half">
               <button class="col-45 margin-left button button-outline button-large button-round sheet-close color-gray">
                 Cancel
               </button>
@@ -251,7 +251,7 @@
                                         });
                                         //read file after writing
                                         const filePath = fileEntry.toURL();
-                                        return $$('#response').append(`<img src="`+filePath+`" alt="downloaded" class="margin-top"/>`);
+                                        return $$('#response').append(`<img src="`+filePath+`" alt="downloaded" class="margin-top-half"/>`);
                                     };
 
                                     fileWriter.onerror = function(er) {
