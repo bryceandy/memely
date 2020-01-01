@@ -181,7 +181,8 @@
                 formData.top, formData.bottom);
 
                 this.$setState({
-                    edited: true
+                    edited: true,
+                    downloaded: false
                 })
             },
             updateEdit () {
@@ -199,9 +200,9 @@
                 const component = this;
                 const myApp = component.$app;
                 const $$ = component.$$;
-                const top_text = top.replaceAll(' ', '%20');
-                const bottom_text = bottom.replaceAll(' ', '%20');
-                font = font.replaceAll(' ', '%20');
+                const top_text = top.split(' ').join('%20');
+                const bottom_text = bottom.split(' ').join('%20');
+                font = font.split(' ').join('%20');
 
                 // Save the requested image temporarily to display in the device it
                 myApp.preloader.show('orange');
@@ -295,7 +296,6 @@
             pageInit () {
                 const meme = this.$route.params.name;
 
-                //setTimeout(() => this.editImage('bryce'), 2000)
                 this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
             }
         }
