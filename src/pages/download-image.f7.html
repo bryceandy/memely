@@ -72,7 +72,7 @@
                     <div class="item-inner">
                       <div class="item-title item-label">Top</div>
                       <div class="item-input-wrap">
-                        <input type="text" value="TOP TEXT"/>
+                        <input type="text" value="TOP TEXT" name="top" />
                       </div>
                     </div>
                   </div>
@@ -82,7 +82,7 @@
                     <div class="item-inner">
                       <div class="item-title item-label">Bottom</div>
                       <div class="item-input-wrap">
-                        <input type="text" value="BOTTOM TEXT"/>
+                        <input type="text" value="BOTTOM TEXT" name="bottom" />
                       </div>
                     </div>
                   </div>
@@ -93,7 +93,7 @@
                       <div class="item-title item-label">Text Size</div>
                       <div class="item-input-wrap">
                         <div class="range-slider range-slider-init" data-label="true">
-                          <input type="range" value="50" min="12" max="72" step="1">
+                          <input type="range" value="50" min="12" max="72" step="1" name="font_size">
                         </div>
                       </div>
                     </div>
@@ -103,7 +103,7 @@
                   <div class="item-inner">
                     <div class="item-title item-label">Font</div>
                     <div class="item-input-wrap input-dropdown-wrap">
-                      <select placeholder="Please choose...">
+                      <select placeholder="Please choose..." name="font">
                         <option value="Impact">Impact</option>
                         {{#fonts}}
                           <option value="'{{this}}'">{{this}}</option>
@@ -115,10 +115,10 @@
               </ul>
             </form>
             <div class="row margin-top">
-              <button @click="submitEdit" class="col-45 margin-left button button-outline button-large button-round sheet-close color-gray">
+              <button class="col-45 margin-left button button-outline button-large button-round sheet-close color-gray">
                 Cancel
               </button>
-              <button class=" col-45 margin-right button button-outline button-large button-round sheet-close color-green">
+              <button @click="submitEdit" class="col-45 margin-right button button-outline button-large button-round sheet-close color-green">
                 Update
               </button>
             </div>
@@ -138,7 +138,7 @@
             }
         },
         methods: {
-            discardImage () {
+            discardImage (backStatus = true) { // Back status indicates if the router should go back after discarding
                 // Fetch the file
                 let fileDirectory = cordova.file.cacheDirectory;
                 const myApp = this.$app;
@@ -150,7 +150,7 @@
                     dir.getFile(fileName, { create: false }, function (fileEntry) {
                         // Delete
                         fileEntry.remove( function () {
-                            if (myApp.views.current.router.currentRoute.name === 'download-image')
+                            if ( backStatus && myApp.views.current.router.currentRoute.name === 'download-image')
                                 myApp.views.current.router.back()
                         })
                     }, function () {
@@ -172,12 +172,13 @@
                 }).open(true)
             },
             submitEdit () {
-                const myApp = this.$app;
-                const fileName = this.myFile;
-                const $$ = this.$$;
 
-                let formData = myApp.form.convertToData('#editImageForm');
-                alert(JSON.stringify(formData))
+                let formData = this.$app.form.convertToData('#editImageForm');
+                this.discardImage(false);
+
+                // Then download the new meme and display it
+                return this.downloadImage(formData.font, formData.font_size, this.$route.params.name,
+                formData.top, formData.bottom)
             },
             updateEdit () {
                 //
@@ -194,8 +195,9 @@
                 const component = this;
                 const myApp = component.$app;
                 const $$ = component.$$;
-                const top_text = top.replace(' ', '%20');
-                const bottom_text = bottom.replace(' ', '%20');
+                const top_text = top.replaceAll(' ', '%20');
+                const bottom_text = bottom.replaceAll(' ', '%20');
+                font = font.replaceAll(' ', '%20');
 
                 // Save the requested image temporarily to display in the device it
                 myApp.preloader.show('orange');
@@ -256,7 +258,7 @@
                                         });
                                         //read file after writing
                                         const filePath = fileEntry.toURL();
-                                        return $$('#response').append(`<img src="`+filePath+`" alt="downloaded" class="margin-top-half"/>`);
+                                        return $$('#response').empty().append(`<img src="`+filePath+`" alt="downloaded" class="margin-top-half"/>`);
                                     };
 
                                     fileWriter.onerror = function(er) {
