@@ -101,7 +101,18 @@
                     </div>
                   </div>
                 </li>
-                // Select values for font family
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Font</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select placeholder="Please choose...">
+                        {{#fonts}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/font}}
+                      </select>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </form>
             <div class="row">
