@@ -1,33 +1,33 @@
 <template>
-  <div class="page page-with-subnavbar" data-name="images">
+  <div class="page" data-name="images">
     <!-- Top Navbar -->
     <div class="navbar navbar-large">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="right">
-          {{> "menu-link"}}
+          <!-- Link to enable searchbar -->
+          <a class="link icon-only searchbar-enable" data-searchbar=".images-searchbar">
+            <i class="icon f7-icons if-not-md">search</i>
+            <i class="icon material-icons md-only">search</i>
+          </a>
         </div>
+        <!--Search bar expandable-->
+        <form class="searchbar searchbar-expandable images-searchbar">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input type="search" placeholder="Search" name="searchImage">
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+          </div>
+        </form>
         <div class="title sliding">
           <img src="static/memely.svg" alt="logo" class="title-logo">
         </div>
-        <div class="title-large images-title-large">
+        <div class="title-large">
           <div class="title-large-text">
             memages
-          </div>
-        </div>
-        <div class="subnavbar images-subnavbar">
-          <div class="subnavbar-inner">
-            <!-- Searchbar with auto init -->
-            <form class="searchbar images-searchbar">
-              <div class="searchbar-inner">
-                <div class="searchbar-input-wrap">
-                  <input type="search" placeholder="Search" name="searchImage">
-                  <i class="searchbar-icon"></i>
-                  <span class="input-clear-button"></span>
-                </div>
-                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-              </div>
-            </form>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="searchbar-backdrop"></div>
       <div class="block searchbar-hide-on-search">
         <div class="row user-action-row">
-          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray" @click="fireSearch">
+          <div class="link col-45 card text-align-center vertical-align-middle text-color-gray">
             <i class="icon f7-icons">search</i>
             <p>Search</p>
           </div>
@@ -70,11 +70,6 @@
 <script>
 export default {
     methods: {
-        fireSearch () {
-            this.$$('.images-title-large').hide();
-            this.$$('.images-subnavbar').show();
-            this.$app.searchbar.get('.images-searchbar').enable()
-        },
         displayPlainImage (imageName) {
             return this.$app.views.current.router.navigate({
                 name: 'download-image',
@@ -84,27 +79,13 @@ export default {
     },
     on: {
         pageInit () {
-            const $$ = this.$$;
             const myApp = this.$app;
-
-            // Show/ hide elements
-            $$('.images-subnavbar').hide();
-            $$('.images-title-large').show();
 
             // Create searchbar
             myApp.searchbar.create({
                 el: '.images-searchbar',
                 searchContainer: '.list',
                 searchIn: '.item-title',
-                on: {
-                    search (sb, query, previousQuery) {
-                        //console.log(query, previousQuery);
-                    },
-                    disable () {
-                        $$('.images-subnavbar').hide();
-                        $$('.images-title-large').show();
-                    }
-                }
             })
         }
     }
