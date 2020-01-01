@@ -11,14 +11,14 @@
           </a>
         </div>
         <div class="title sliding">
-          edit
+          new
         </div>
         <div class="right">
           {{> "menu-link"}}
         </div>
         <div class="title-large">
           <div class="title-large-text">
-            edit
+            new
           </div>
         </div>
       </div>
@@ -26,6 +26,11 @@
 
     <!-- Scrollable page content-->
     <div class="page-content download-image-page-content">
+      <div class="block">
+        <div class="block-title-medium text-color-gray">
+          {{removeHyphens this.$route.params.name}}
+        </div>
+      </div>
       <div class="row margin-top">
         {{#if downloaded}}
           <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage('{{myFile}}')">
@@ -64,7 +69,7 @@
         <div class="sheet-modal-inner">
           <!-- Sheet Modal content -->
           <div class="block" style="margin: 8px 0">
-            <form class="list no-hairlines-md" style="margin:0" id="editImageForm">
+            <form class="list inline-label no-hairline-top no-hairline-bottom no-hairlines-md" style="margin:0" id="editImageForm">
               <ul>
                 <li>
                   <div class="item-content item-input">
@@ -282,7 +287,7 @@
         on: {
             pageInit () {
                 const meme = this.$route.params.name;
-                this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
+                //this.downloadImage('Impact', 50, meme, 'top text', 'bottom text');
             }
         }
     }

@@ -14,6 +14,11 @@ import cordovaApp from './cordova-app.js';
 import routes from './routes.js';
 import Template7 from "template7";
 
+// Register helpers
+Template7.registerHelper('removeHyphens', (val) => {
+  return val.replace("-", " ");
+});
+
 // Partial templates to be used anywhere
 Template7.registerPartial('menu-link',
     `<a href="#" class="link icon-only panel-open" data-panel="left">
