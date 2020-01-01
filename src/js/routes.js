@@ -66,7 +66,42 @@ var routes = [
   {
     path: '/image/get/:name/',
     name: 'download-image',
-    component: DownloadImagePage
+    async: function (routeTo, routeFrom, resolve, reject) {
+
+      const app = this.app;
+
+      // Request
+      app.request({
+        url: app.data.requestingDomain+'fonts',
+        method: 'Get',
+        headers: {
+          "x-rapidapi-host": app.data.XRapidAPIHost,
+          "x-rapidapi-key": app.data.XRapidAPIKey
+        },
+        dataType: 'json',
+        success(data, status, xhr) {
+
+          setTimeout(() => {
+            resolve ({
+              component: DownloadImagePage
+            },{
+              context: {
+                fonts: data
+              }
+            })
+          }, 100)
+        },
+        error(xhr, status) {
+          reject();
+          app.toast.create({
+            text: 'Failed to load fonts! '+status,
+            closeButton: true,
+            closeButtonText: 'OK',
+            closeButtonColor: 'red',
+          }).open()
+        }
+      })
+    },
   },
   {
     path: '/gifs/',
