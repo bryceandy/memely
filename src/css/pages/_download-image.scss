@@ -1,7 +1,8 @@
 @import "../variables";
 
 .download-image-page-content {
-  overflow: hidden;
+  overflow-x: hidden;
+  -ms-overflow-x: hidden;
   width: 100%;
 
   #response {
