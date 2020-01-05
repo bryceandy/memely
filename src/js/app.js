@@ -61,9 +61,7 @@ var app = new Framework7({
     iosOverlaysWebView: false,
     androidOverlaysWebView: false,
     iosBackgroundColor: '#005246',
-    androidBackgroundColor: '#005246',
-    iosTextColor: '#FFFFFF',
-    androidTextColor: '#FFFFFF',
+    androidBackgroundColor: '#005246'
   },
   on: {
     init: function () {
