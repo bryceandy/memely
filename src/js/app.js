@@ -59,7 +59,9 @@ var app = new Framework7({
   // Cordova Statusbar settings
   statusbar: {
     iosOverlaysWebView: false,
-    androidOverlaysWebView: false
+    androidOverlaysWebView: false,
+    iosBackgroundColor: '#005246',
+    androidBackgroundColor: '#005246',
   },
   on: {
     init: function () {
