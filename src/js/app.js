@@ -124,7 +124,7 @@ var app = new Framework7({
             return cordova.plugins.saveVideoToGallery(filePath, function () {
               app.toast.create({
                 icon: '<i class="f7-icons">checkmark_alt</i>',
-                text: 'Saved!',
+                text: 'Saved',
                 position: 'center',
                 closeTimeout: 4000,
               }).open();
@@ -136,7 +136,7 @@ var app = new Framework7({
           return window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
             app.toast.create({
               icon: '<i class="f7-icons">checkmark_alt</i>',
-              text: 'Saved!',
+              text: 'Saved',
               position: 'center',
               closeTimeout: 4000,
             }).open();
@@ -152,7 +152,7 @@ var app = new Framework7({
               fileEntry.moveTo(dirEntry, fileName, function () { // Success
                 app.toast.create({
                   icon: '<i class="f7-icons">checkmark_alt</i>',
-                  text: 'Saved!',
+                  text: 'Saved',
                   position: 'center',
                   closeTimeout: 4000,
                 }).open();
