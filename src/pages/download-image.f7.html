@@ -29,7 +29,7 @@
       <!--The resulting image will be displayed here-->
       <div id="response" class="block">
       </div>
-      <div class="row margin-top">
+      <div class="row margin-top margin-bottom">
         {{#if downloaded}}
           <button class="button button-raised button-round button-large margin-left col-45" @click="discardImage">
             Discard
@@ -41,7 +41,7 @@
         {{/if}}
         {{#if edited}}
         <button class="button button-raised button-round button-large margin-right col-45 sheet-open"
-          data-sheet="edit-image-sheet-modal" @click="updateEdit">
+          data-sheet="edit-image-sheet-modal" @click="editImage">
           Re-edit
         </button>
         <button class="button button-fill button-round button-large margin-right col-45" @click="shareMeme">
@@ -106,7 +106,7 @@
                       <select placeholder="Please choose..." name="font">
                         <option value="Impact">Impact</option>
                         {{#fonts}}
-                          <option value="'{{this}}'">{{this}}</option>
+                          <option value="{{this}}">{{this}}</option>
                         {{/fonts}}
                       </select>
                     </div>
@@ -114,7 +114,7 @@
                 </li>
               </ul>
             </form>
-            <div class="row margin-top">
+            <div class="row margin-top margin-bottom">
               <button class="col-45 margin-left button button-outline button-large button-round sheet-close color-gray">
                 Cancel
               </button>
@@ -142,6 +142,7 @@
                 // Fetch the file
                 let fileDirectory = cordova.file.cacheDirectory;
                 const myApp = this.$app;
+                const router = this.$router;
                 const fileName = this.myFile;
 
                 if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
@@ -150,7 +151,7 @@
                     dir.getFile(fileName, { create: false }, function (fileEntry) {
                         // Delete
                         fileEntry.remove( function () {
-                            if ( backStatus && myApp.views.current.router.currentRoute.name === 'download-image')
+                            if ( backStatus && router.currentRoute.name === 'download-image')
                                 myApp.views.current.router.back()
                         })
                     }, function () {
@@ -174,19 +175,16 @@
             submitEdit () {
 
                 let formData = this.$app.form.convertToData('#editImageForm');
-                this.discardImage(false);
+                const meme = this.$route.params.name;
+                const component = this;
 
                 // Then download the new meme and display it
-                this.downloadImage(formData.font, formData.font_size, this.$route.params.name,
-                formData.top, formData.bottom);
+                async function submit() {
+                    await new Promise(resolve => resolve (component.discardImage(false)));
 
-                this.$setState({
-                    edited: true,
-                    downloaded: false
-                })
-            },
-            updateEdit () {
-                //
+                    return component.downloadImage(formData.font, formData.font_size, meme, formData.top, formData.bottom, true);
+                }
+                submit()
             },
             shareMeme () {
                 const myApp = this.$app;
@@ -195,7 +193,7 @@
                 myApp.methods.saveToGallery(fileName);
                 myApp.views.current.router.back()
             },
-            downloadImage (font, font_size, meme, top, bottom) {
+            downloadImage (font, font_size, meme, top, bottom, edit = false) {
                 // Declarations
                 const component = this;
                 const myApp = component.$app;
@@ -209,8 +207,9 @@
 
                 // Using xmlhttp we can obtain a blob
                 let oReq = new XMLHttpRequest();
+                let url = myApp.data.requestingDomain+"meme?font="+font+"&font_size="+font_size+"&meme="+meme+"&top="+top_text+"&bottom="+bottom_text;
 
-                oReq.open("GET", myApp.data.requestingDomain+"meme?font="+font+"&font_size="+font_size+"&meme="+meme+"&top="+top_text+"&bottom="+bottom_text, true);
+                oReq.open("GET", url, true);
                 oReq.responseType = "blob";
                 oReq.setRequestHeader("x-rapidapi-host", myApp.data.XRapidAPIHost);
                 oReq.setRequestHeader("x-rapidapi-key", myApp.data.XRapidAPIKey);
@@ -257,10 +256,19 @@
                                     fileWriter.onwriteend = function() {
                                         myApp.preloader.hide();
                                         // Change state
-                                        component.$setState({
-                                            downloaded: true,
-                                            myFile: fileName
-                                        });
+                                        if (edit) {
+                                            component.$setState({
+                                                edited: true,
+                                                downloaded: false,
+                                                myFile: fileName
+                                            })
+                                        }
+                                        else {
+                                            component.$setState({
+                                                downloaded: true,
+                                                myFile: fileName
+                                            });
+                                        }
                                         //read file after writing
                                         const filePath = fileEntry.toURL();
                                         return $$('#response').empty().append(`<img src="`+filePath+`" alt="downloaded" class="margin-top-half"/>`);
