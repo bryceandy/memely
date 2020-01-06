@@ -120,8 +120,7 @@ var app = new Framework7({
         else if ( app.device.ios ) {
           const filePath = fileEntry.toURL();
           // Check if it is a video
-          if (fileName.indexOf(".mp4") || fileName.indexOf(".mov")) {
-
+          if (fileName.search(".mp4") > 0 || fileName.search(".mov") > 0) {
             return cordova.plugins.saveVideoToGallery(filePath, function () {
               app.toast.create({
                 icon: '<i class="f7-icons">checkmark_alt</i>',
@@ -133,6 +132,7 @@ var app = new Framework7({
               fileEntry.remove() // Delete from tmp
             }, function () {/** Error callback saveVid */ fileEntry.remove()})
           }
+
           return window.plugins.socialsharing.saveToPhotoAlbum([filePath], function () {
             app.toast.create({
               icon: '<i class="f7-icons">checkmark_alt</i>',
