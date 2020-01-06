@@ -190,8 +190,13 @@
                 const myApp = this.$app;
                 const fileName = this.myFile;
 
-                myApp.methods.saveToGallery(fileName);
-                myApp.views.current.router.back()
+                async function saveImage() {
+                    let saveProm = new Promise(resolve => resolve(myApp.methods.saveToGallery(fileName)));
+
+                    await saveProm;
+                    myApp.views.current.router.back()
+                }
+                saveImage()
             },
             downloadImage (font, font_size, meme, top, bottom, edit = false) {
                 // Declarations
