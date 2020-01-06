@@ -213,19 +213,23 @@
                 function openShareSheet(fileEntry) {
                     // this is the complete list of currently supported params you can pass to the plugin (all optional)
                     var options = {
-                        message: 'Shared by Memely', // not supported on some apps (Facebook, Instagram)
                         files: [fileEntry.toURL()], // an array of filenames either locally or remotely
                         chooserTitle: 'Pick an app', // Android only, you can override the default share sheet title
                         iPadCoordinates: '0,0,0,0' //IOS only iPadCoordinates for where the popover should be point.  Format with x,y,width,height
                     };
 
                     var onSuccess = function(result) {
-                        alert("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-                        alert("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+                        //alert("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+                        //alert("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
                     };
 
                     var onError = function(msg) {
-                        alert("Sharing failed with message: " + msg);
+                        myApp.toast.create({
+                            text: msg,
+                            closeButton: true,
+                            closeButtonText: 'OK',
+                            closeButtonColor: 'red',
+                        }).open()
                     };
 
                     window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError)
