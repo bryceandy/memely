@@ -187,8 +187,9 @@
                 submit()
             },
             shareMeme () {
-                const myApp = this.$app;
-                const fileName = this.myFile;
+                const component = this;
+                const myApp = component.$app;
+                const fileName = component.myFile;
 
                 async function saveImage() {
                     let saveProm = new Promise(resolve => resolve(myApp.methods.saveToGallery(fileName)));
@@ -196,7 +197,36 @@
                     await saveProm;
                     myApp.views.current.router.back()
                 }
-                saveImage()
+
+                myApp.actions.create({
+                    buttons: [
+                        [
+                            {
+                                text: 'Share',
+                                label: true
+                            },
+                            {
+                                text: 'Mail',
+                                onClick: function (actions, e) {
+                                    setTimeout(() => actions.close(), 0);
+                                    //return component.mailGif(id)
+                                }
+                            },
+                            {
+                                text: 'Save meme',
+                                onClick: function () {
+                                    saveImage()
+                                }
+                            }
+                        ],
+                        [
+                            {
+                                text: 'Cancel',
+                                color: 'red'
+                            }
+                        ]
+                    ],
+                }).open(true);
             },
             downloadImage (font, font_size, meme, top, bottom, edit = false) {
                 // Declarations
