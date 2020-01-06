@@ -191,14 +191,54 @@
                 const myApp = component.$app;
                 const fileName = component.myFile;
 
-                async function saveImage() {
+                let fileDirectory = cordova.file.cacheDirectory;
+                if (myApp.device.ios) fileDirectory = cordova.file.tempDirectory;
+
+                window.resolveLocalFileSystemURL(fileDirectory, getFileFromEntry /** Success */,
+                    function () { /** Error callback */});
+
+                function getFileFromEntry(dir) {
+                    dir.getFile(fileName, { create: false }, openShareSheet /** Success */,
+                        function () { /** Error callback */
+                        myApp.toast.create({
+                            text: 'The file does not exist',
+                            closeButton: true,
+                            closeButtonText: 'OK',
+                            closeButtonColor: 'red',
+                            closeTimeout: 4000,
+                        }).open()
+                        })
+                }
+
+                function openShareSheet(fileEntry) {
+                    // this is the complete list of currently supported params you can pass to the plugin (all optional)
+                    var options = {
+                        message: 'Shared by Memely', // not supported on some apps (Facebook, Instagram)
+                        files: [fileEntry.toURL()], // an array of filenames either locally or remotely
+                        chooserTitle: 'Pick an app', // Android only, you can override the default share sheet title
+                        iPadCoordinates: '0,0,0,0' //IOS only iPadCoordinates for where the popover should be point.  Format with x,y,width,height
+                    };
+
+                    var onSuccess = function(result) {
+                        alert("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+                        alert("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+                    };
+
+                    var onError = function(msg) {
+                        alert("Sharing failed with message: " + msg);
+                    };
+
+                    window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError)
+                }
+
+                /*async function saveImage() {
                     let saveProm = new Promise(resolve => resolve(myApp.methods.saveToGallery(fileName)));
 
                     await saveProm;
                     myApp.views.current.router.back()
-                }
+                }*/
 
-                myApp.actions.create({
+                /*myApp.actions.create({
                     buttons: [
                         [
                             {
@@ -226,7 +266,7 @@
                             }
                         ]
                     ],
-                }).open(true);
+                }).open(true);*/
             },
             downloadImage (font, font_size, meme, top, bottom, edit = false) {
                 // Declarations
